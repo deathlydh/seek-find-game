@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewAnimalQuestion", menuName = "AnimalQuiz/AnimalQuestion")]
 public class AnimalQuestionConfig : ScriptableObject
 {
-    public Sprite animalPhoto;      // Фото животного
+    public GameObject animalPrefab;      // Фото животного
     public string[] answerOptions;  // Варианты ответов (всего 4)
     public string correctAnswer;    // Правильный ответ
 }

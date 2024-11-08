@@ -23,6 +23,7 @@ public class AnimalQuizManager : MonoBehaviour
     private string correctAnswer;
     private bool isAnimalFound = false;
 
+
     private BoxCollider2D containerCollider;
 
     private void Start()

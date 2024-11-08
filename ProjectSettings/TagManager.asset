@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Outline
+    uniqueID: 4110753453
+    locked: 0
+  - name: Photo
+    uniqueID: 3823257093
+    locked: 0

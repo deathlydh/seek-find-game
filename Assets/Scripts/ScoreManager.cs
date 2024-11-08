@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    public TextMeshProUGUI scoreText;
+    //public TextMeshProUGUI scoreText;
     public TextMeshProUGUI finalScoreText;
     public int score = 0;
-    public void UpdateScore()
-    {
-        scoreText.text = "Score: " + score.ToString();
-    }
+   // public void UpdateScore()
+   // {
+    //    scoreText.text = "Score: " + score.ToString();
+   // }
 }

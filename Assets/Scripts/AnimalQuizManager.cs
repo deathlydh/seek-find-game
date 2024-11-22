@@ -17,7 +17,7 @@ public class AnimalQuizManager : MonoBehaviour
     private GameObject currentAnimalInstance;      // Ссылка на текущий префаб животного
     public GameObject gameOverPanel;
 
-   
+
 
     private AnimalQuestionConfig currentQuestion;  // Текущий вопрос
     private string correctAnswer;
@@ -32,7 +32,7 @@ public class AnimalQuizManager : MonoBehaviour
         containerCollider = animalContainer.GetComponent<BoxCollider2D>();
         gameOverPanel.SetActive(false);
         incorrectSelectionOverlay.SetActive(false); // Скрываем рамку при старте
-       
+
         SetButtonsInactive(); // Делаем кнопки неактивными при старте
     }
 
@@ -56,25 +56,57 @@ public class AnimalQuizManager : MonoBehaviour
     // Метод для проверки, было ли найдено животное
     void CheckAnimal()
     {
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Collider2D hitCollider = Physics2D.OverlapPoint(mousePosition);
+        Vector2 clickPosition;
 
-        // Проверка, совпадает ли нажатие с текущим животным на сцене
-        if (hitCollider != null && hitCollider == currentAnimalInstance.GetComponent<Collider2D>())
+        // Определяем позицию клика (мышь или сенсор)
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
-            isAnimalFound = true;
-            incorrectSelectionOverlay.SetActive(false); // Скрываем неправильный выбор
-            var animalOutline = currentAnimalInstance.GetComponent<AnimalOutline>();
-            if (animalOutline != null)
-            {
-                animalOutline.SetOutlineActive(true);
-            }
-            SetButtonsActive(); // Делаем кнопки активными и меняем их цвет
-            ShuffleAndAssignAnswers();
+            clickPosition = Input.GetTouch(0).position;
+        }
+        else if (Input.GetMouseButtonDown(0))
+        {
+            clickPosition = Input.mousePosition;
         }
         else
         {
-            Debug.Log("Неправильное животное. Таймер продолжается.");
+            return; // Если ничего не нажато, выходим из метода
+        }
+
+        // Переводим позицию клика из экранных координат в луч из камеры
+        Ray ray = Camera.main.ScreenPointToRay(clickPosition);
+
+        // Выполняем проверку на попадание по BoxCollider
+        if (Physics.Raycast(ray, out RaycastHit hit))
+        {
+            if (hit.collider != null)
+            {
+                // Проверяем, попали ли мы по текущему животному
+                if (hit.collider.gameObject == currentAnimalInstance)
+                {
+                    isAnimalFound = true;
+                    incorrectSelectionOverlay.SetActive(false); // Скрываем неправильный выбор
+
+                    // Активируем обводку для текущего животного
+                    var animalOutline = currentAnimalInstance.GetComponent<AnimalOutline>();
+                    if (animalOutline != null)
+                    {
+                        animalOutline.SetOutlineActive(true);
+                    }
+
+                    // Активируем кнопки и присваиваем ответы
+                    SetButtonsActive();
+                    ShuffleAndAssignAnswers();
+                }
+                else
+                {
+                    Debug.Log("Попали не в то животное.");
+                    StartCoroutine(ShowIncorrectOverlay());
+                }
+            }
+        }
+        else
+        {
+            Debug.Log("Луч не нашел никаких объектов.");
             StartCoroutine(ShowIncorrectOverlay());
         }
     }

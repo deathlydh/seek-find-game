@@ -38,7 +38,7 @@ public class SaveController : MonoBehaviour
         return SaveSystem.GetAllScore();
     }
 
-    public int AnaliticSoreBatterThen(){
-        return SaveSystem.AnaliticSoreBatterThen();
+    public int AnaliticSoreBatterThen(int score){
+        return SaveSystem.AnaliticSoreBatterThen(score);
     }
 }

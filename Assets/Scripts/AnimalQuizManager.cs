@@ -17,11 +17,12 @@ public class AnimalQuizManager : MonoBehaviour
     private GameObject currentAnimalInstance;      // Ссылка на текущий префаб животного
     public GameObject gameOverPanel;
 
-
+    public Image selectionOutline;
 
     private AnimalQuestionConfig currentQuestion;  // Текущий вопрос
     private string correctAnswer;
     private bool isAnimalFound = false;
+    private bool isQuizStarted = false;
 
 
     private BoxCollider2D containerCollider;
@@ -39,12 +40,15 @@ public class AnimalQuizManager : MonoBehaviour
     // Метод для начала викторины
     public void StartQuiz()
     {
+        isQuizStarted = true; // Устанавливаем флаг, что викторина началась
         LoadNewQuestion();
         SetButtonsInactive(); // Делаем кнопки неактивными при старте
     }
 
     private void Update()
     {
+        if (!isQuizStarted) return; // Если викторина не началась, ничего не делаем
+
         bool isTouchDetected = Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began;
 
         if ((Input.GetMouseButtonDown(0) || isTouchDetected) && !isAnimalFound)
@@ -86,12 +90,14 @@ public class AnimalQuizManager : MonoBehaviour
                     isAnimalFound = true;
                     incorrectSelectionOverlay.SetActive(false); // Скрываем неправильный выбор
 
-                    // Активируем обводку для текущего животного
-                    var animalOutline = currentAnimalInstance.GetComponent<AnimalOutline>();
-                    if (animalOutline != null)
+                    // Обновляем рамку для текущего животного
+                    var animalCollider = currentAnimalInstance.GetComponent<BoxCollider>();
+                    if (animalCollider != null && selectionOutline != null)
                     {
-                        animalOutline.SetOutlineActive(true);
+                        UpdateOutline(selectionOutline.rectTransform, animalCollider);
+                        selectionOutline.gameObject.SetActive(true); // Показываем рамку
                     }
+
 
                     // Активируем кнопки и присваиваем ответы
                     SetButtonsActive();
@@ -117,6 +123,23 @@ public class AnimalQuizManager : MonoBehaviour
         yield return new WaitForSeconds(1f);       // Ждем 1 секунду
         incorrectSelectionOverlay.SetActive(false); // Скрываем неправильную рамку
     }
+    private void UpdateOutline(RectTransform outline, BoxCollider collider)
+    {
+        if (outline == null || collider == null) return;
+
+        // Размер коллайдера (X и Y используются для UI, Z игнорируется)
+        Vector3 colliderSize = collider.size;
+
+        // Центр коллайдера в мировых координатах
+        Vector3 worldCenter = collider.transform.TransformPoint(collider.center);
+
+        // Позиция рамки в локальных координатах Canvas
+        Vector2 canvasLocalPosition = animalContainer.transform.InverseTransformPoint(worldCenter);
+
+        // Устанавливаем размер и позицию рамки
+        outline.sizeDelta = new Vector2(colliderSize.x, colliderSize.y);
+        outline.anchoredPosition = canvasLocalPosition;
+    }
 
     // Метод для загрузки нового вопроса
     private void LoadNewQuestion()
@@ -130,6 +153,7 @@ public class AnimalQuizManager : MonoBehaviour
 
         // Сбрасываем флаг и деактивируем кнопки
         isAnimalFound = false;
+        selectionOutline.gameObject.SetActive(false);
         SetButtonsInactive(); // Делаем кнопки неактивными
         incorrectSelectionOverlay.SetActive(false); // Скрываем неправильную рамку
 
@@ -177,9 +201,11 @@ public class AnimalQuizManager : MonoBehaviour
     {
         foreach (Button button in answerButtons)
         {
-            button.gameObject.SetActive(true); // Buttons remain visible
-            button.interactable = false; // Disable button interaction
-            button.GetComponent<Image>().color = Color.white; // Set to neutral color (could be glowing)
+            var controller = button.GetComponent<QuizButtonController>();
+            if (controller != null)
+            {
+                controller.SetInactive();
+            }
         }
     }
 
@@ -187,9 +213,61 @@ public class AnimalQuizManager : MonoBehaviour
     {
         foreach (Button button in answerButtons)
         {
-            button.interactable = true; // Enable button interaction
-            button.GetComponent<Image>().color = Color.blue; // Set to blue color when active
+            var controller = button.GetComponent<QuizButtonController>();
+            if (controller != null)
+            {
+                controller.SetActive();
+            }
         }
+    }
+
+    private void OnAnswerSelected(string selectedAnswer)
+    {
+        foreach (Button button in answerButtons)
+        {
+            var controller = button.GetComponent<QuizButtonController>();
+            if (controller == null) continue;
+
+            string buttonAnswer = button.GetComponentInChildren<TextMeshProUGUI>().text;
+            if (buttonAnswer == correctAnswer)
+            {
+                controller.SetCorrect(); // Устанавливаем спрайт правильного ответа
+            }
+            else if (buttonAnswer == selectedAnswer)
+            {
+                controller.SetIncorrect(); // Устанавливаем спрайт неправильного ответа
+            }
+            else
+            {
+                controller.SetInactive(); // Остальные кнопки возвращаются в неактивное состояние
+            }
+        }
+
+        if (selectedAnswer == correctAnswer)
+        {
+            scoreManager.score++;
+            Debug.Log("Правильный ответ!");
+            // Запускаем эффект частиц в верхней части экрана
+            if (correctAnswerParticles != null)
+            {
+                Vector3 topOfScreen = new Vector3(0, Camera.main.orthographicSize, 0);
+                ParticleSystem particles = Instantiate(correctAnswerParticles, topOfScreen, Quaternion.identity);
+                Destroy(particles.gameObject, 1.5f); // Уничтожаем систему частиц через 1 секунду
+            }
+        }
+        else
+        {
+            Debug.Log("Неправильный ответ.");
+        }
+
+        // Загружаем новый вопрос с задержкой
+        StartCoroutine(LoadNextQuestionWithDelay());
+    }
+
+    private IEnumerator LoadNextQuestionWithDelay()
+    {
+        yield return new WaitForSeconds(1.5f); // Ждем 1.5 секунды
+        LoadNewQuestion();
     }
 
     // Метод для перемешивания списка
@@ -219,29 +297,8 @@ public class AnimalQuizManager : MonoBehaviour
         }
     }
 
-    // Метод для обработки выбора ответа
-    private void OnAnswerSelected(string selectedAnswer)
-    {
-        if (selectedAnswer == correctAnswer)
-        {
-            scoreManager.score++;
-            Debug.Log("Правильный ответ!");
-
-            // Запускаем эффект частиц в верхней части экрана
-            if (correctAnswerParticles != null)
-            {
-                Vector3 topOfScreen = new Vector3(0, Camera.main.orthographicSize, 0);
-                ParticleSystem particles = Instantiate(correctAnswerParticles, topOfScreen, Quaternion.identity);
-                Destroy(particles.gameObject, 1f); // Уничтожаем систему частиц через 1 секунду
-            }
-        }
-        else
-        {
-            Debug.Log("Неправильный ответ.");
-        }
-
-        LoadNewQuestion();
-    }
+   
+   
 
     // Метод для окончания игры
     public void EndGame()

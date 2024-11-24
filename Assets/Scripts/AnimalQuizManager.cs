@@ -8,14 +8,20 @@ using UnityEngine.UI;
 public class AnimalQuizManager : MonoBehaviour
 {
     public ScoreManager scoreManager;
-    public AnimalQuestionConfig[] animalQuestions; // Массив вопросов
-    private List<AnimalQuestionConfig> availableQuestions; // Список доступных вопросов
+    public AnimalQuestionConfig[] easyQuestions; // Лёгкие вопросы
+    public AnimalQuestionConfig[] hardQuestions; // Сложные вопросы
+    private List<AnimalQuestionConfig> availableEasyQuestions; // Доступные лёгкие вопросы
+    private List<AnimalQuestionConfig> availableHardQuestions; // Доступные сложные вопросы
+    private bool isEasyPhase = true; // Список доступных вопросов
     public Button[] answerButtons;                 // Массив кнопок для ответов
-    public GameObject animalContainer;             // Контейнер для префабов животных
+    [SerializeField] private RectTransform animalContainer;             // Контейнер для префабов животных
     public GameObject incorrectSelectionOverlay;   // Объект с красной рамкой для неправильного выбора
     public ParticleSystem correctAnswerParticles;  // Префаб для частиц правильного ответа
     private GameObject currentAnimalInstance;      // Ссылка на текущий префаб животного
     public GameObject gameOverPanel;
+
+    [SerializeField] private float fixOffsetX = 0f; // Смещение по X для рамки
+    [SerializeField] private float fixOffsetY = 0f; // Смещение по Y для рамки
 
     public Image selectionOutline;
 
@@ -29,7 +35,8 @@ public class AnimalQuizManager : MonoBehaviour
 
     private void Start()
     {
-        availableQuestions = new List<AnimalQuestionConfig>(animalQuestions);
+        availableEasyQuestions = new List<AnimalQuestionConfig>(easyQuestions);
+        availableHardQuestions = new List<AnimalQuestionConfig>(hardQuestions);
         containerCollider = animalContainer.GetComponent<BoxCollider2D>();
         gameOverPanel.SetActive(false);
         incorrectSelectionOverlay.SetActive(false); // Скрываем рамку при старте
@@ -101,7 +108,7 @@ public class AnimalQuizManager : MonoBehaviour
 
                     // Активируем кнопки и присваиваем ответы
                     SetButtonsActive();
-                    ShuffleAndAssignAnswers();
+                    
                 }
                 else
                 {
@@ -127,28 +134,47 @@ public class AnimalQuizManager : MonoBehaviour
     {
         if (outline == null || collider == null) return;
 
-        // Размер коллайдера (X и Y используются для UI, Z игнорируется)
+        // Центр и размеры коллайдера
         Vector3 colliderSize = collider.size;
+        Vector3 colliderCenter = collider.center;
 
-        // Центр коллайдера в мировых координатах
-        Vector3 worldCenter = collider.transform.TransformPoint(collider.center);
+        // Смещение (задается через инспектор)
+        Vector3 offset = new Vector3(fixOffsetX, fixOffsetY, 0);
 
-        // Позиция рамки в локальных координатах Canvas
+        // Преобразуем центр с учетом смещения
+        Vector3 worldCenter = collider.transform.TransformPoint(colliderCenter + offset);
+        Vector3 worldSize = Vector3.Scale(colliderSize, collider.transform.lossyScale);
+
+        // Переводим в локальные координаты Canvas
         Vector2 canvasLocalPosition = animalContainer.transform.InverseTransformPoint(worldCenter);
 
         // Устанавливаем размер и позицию рамки
-        outline.sizeDelta = new Vector2(colliderSize.x, colliderSize.y);
+        outline.sizeDelta = new Vector2(worldSize.x / animalContainer.transform.lossyScale.x, worldSize.y / animalContainer.transform.lossyScale.y);
         outline.anchoredPosition = canvasLocalPosition;
     }
 
     // Метод для загрузки нового вопроса
     private void LoadNewQuestion()
     {
-        // Проверяем, есть ли еще вопросы
-        if (availableQuestions.Count == 0)
+        // Выбираем текущий список доступных вопросов
+        List<AnimalQuestionConfig> currentAvailableQuestions = isEasyPhase ? availableEasyQuestions : availableHardQuestions;
+
+        // Проверяем, есть ли еще вопросы в текущем списке
+        if (currentAvailableQuestions.Count == 0)
         {
-            EndGame();
-            return;
+            if (isEasyPhase)
+            {
+                // Переходим к сложным вопросам
+                isEasyPhase = false;
+                LoadNewQuestion();
+                return;
+            }
+            else
+            {
+                // Завершаем игру, если закончились все вопросы
+                EndGame();
+                return;
+            }
         }
 
         // Сбрасываем флаг и деактивируем кнопки
@@ -158,10 +184,10 @@ public class AnimalQuizManager : MonoBehaviour
         incorrectSelectionOverlay.SetActive(false); // Скрываем неправильную рамку
 
         // Выбираем случайный вопрос из доступных
-        int questionIndex = Random.Range(0, availableQuestions.Count);
-        currentQuestion = availableQuestions[questionIndex];
+        int questionIndex = Random.Range(0, currentAvailableQuestions.Count);
+        currentQuestion = currentAvailableQuestions[questionIndex];
         correctAnswer = currentQuestion.correctAnswer;
-        availableQuestions.RemoveAt(questionIndex);
+        currentAvailableQuestions.RemoveAt(questionIndex);
 
         // Удаляем предыдущий префаб животного, если он был
         if (currentAnimalInstance != null)
@@ -176,6 +202,23 @@ public class AnimalQuizManager : MonoBehaviour
         // Подгоняем размер префаба под контейнер
         FitPrefabToCollider(currentAnimalInstance, containerCollider);
 
+        // Подгружаем ответы в кнопки, но не активируем их
+        PreloadAnswers();
+    }
+
+    // Метод для подгрузки ответов в кнопки без активации
+    private void PreloadAnswers()
+    {
+        List<string> shuffledAnswers = new List<string>(currentQuestion.answerOptions);
+        ShuffleList(shuffledAnswers);
+
+        for (int i = 0; i < answerButtons.Length; i++)
+        {
+            int index = i;
+            answerButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = shuffledAnswers[i];
+            answerButtons[i].onClick.RemoveAllListeners();
+            answerButtons[i].onClick.AddListener(() => OnAnswerSelected(shuffledAnswers[index]));
+        }
     }
 
     // Метод для подгонки размера префаба под размер коллайдера
@@ -269,21 +312,7 @@ public class AnimalQuizManager : MonoBehaviour
         yield return new WaitForSeconds(1.5f); // Ждем 1.5 секунды
         LoadNewQuestion();
     }
-
-    // Метод для перемешивания списка
-    private void ShuffleAndAssignAnswers()
-    {
-        List<string> shuffledAnswers = new List<string>(currentQuestion.answerOptions);
-        ShuffleList(shuffledAnswers);
-
-        for (int i = 0; i < answerButtons.Length; i++)
-        {
-            int index = i;
-            answerButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = shuffledAnswers[i];
-            answerButtons[i].onClick.RemoveAllListeners();
-            answerButtons[i].onClick.AddListener(() => OnAnswerSelected(shuffledAnswers[index]));
-        }
-    }
+ 
 
     // Метод для перемешивания списка
     private void ShuffleList(List<string> list)

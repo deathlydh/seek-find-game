@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using UnityEngine;
 
 public static class SaveSystem
@@ -11,6 +12,7 @@ public static class SaveSystem
     private static string _count        = "CountSave";
     private static string _firstStage   = "FirstStage";
     private static string _save         = "ScoreSave_";
+    private static string PassPool      = "PassPool";
 
     public static void init()
     {
@@ -18,6 +20,7 @@ public static class SaveSystem
         {
             count = PlayerPrefs.GetInt(_count);
         }
+        PlayerPrefs.SetString(PassPool, "");
     }
 
     public static int GetFirstStage()
@@ -70,5 +73,25 @@ public static class SaveSystem
         }
 
         return Mathf.RoundToInt((float)LessCount / count * 100);
+    }
+
+    public static void setPassPool(string name)
+    {
+        string _passPool = PlayerPrefs.GetString(PassPool);
+        _passPool += (_passPool.Length > 1 ? "|" : "") + name.Replace("(Clone)","");
+        Debug.Log(_passPool);
+
+        PlayerPrefs.SetString(PassPool, _passPool);
+    }
+
+    public static bool isContainOnPassPool(string PrefabsName)
+    {
+        string[] _pool = getPassPool();
+        return _pool.Contains(PrefabsName);
+    }
+
+    public static string[] getPassPool()
+    {
+        return PlayerPrefs.GetString(PassPool).Split('|');
     }
 }

@@ -42,6 +42,7 @@ public class AnimalQuizManager : MonoBehaviour
         incorrectSelectionOverlay.SetActive(false); // Скрываем рамку при старте
 
         SetButtonsInactive(); // Делаем кнопки неактивными при старте
+        SaveSystem.init();
     }
 
     // Метод для начала викторины
@@ -198,6 +199,8 @@ public class AnimalQuizManager : MonoBehaviour
         // Спавним новый префаб животного в центре контейнера
         Vector3 spawnPosition = containerCollider.bounds.center;
         currentAnimalInstance = Instantiate(currentQuestion.animalPrefab, spawnPosition, Quaternion.identity, animalContainer.transform);
+
+        SaveSystem.setPassPool(currentAnimalInstance.name);
 
         // Подгоняем размер префаба под контейнер
         FitPrefabToCollider(currentAnimalInstance, containerCollider);

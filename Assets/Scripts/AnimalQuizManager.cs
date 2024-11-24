@@ -33,16 +33,13 @@ public class AnimalQuizManager : MonoBehaviour
 
     private BoxCollider2D containerCollider;
 
-    [SerializeField] private BorderSwitcher border;
-
     private void Start()
     {
         availableEasyQuestions = new List<AnimalQuestionConfig>(easyQuestions);
         availableHardQuestions = new List<AnimalQuestionConfig>(hardQuestions);
         containerCollider = animalContainer.GetComponent<BoxCollider2D>();
         gameOverPanel.SetActive(false);
-        //incorrectSelectionOverlay.SetActive(false); // Скрываем рамку при старте
-        border.SetWrong(false);
+        incorrectSelectionOverlay.SetActive(false); // Скрываем рамку при старте
 
         SetButtonsInactive(); // Делаем кнопки неактивными при старте
         SaveSystem.init();
@@ -99,8 +96,7 @@ public class AnimalQuizManager : MonoBehaviour
                 if (hit.collider.gameObject == currentAnimalInstance)
                 {
                     isAnimalFound = true;
-                    //incorrectSelectionOverlay.SetActive(false); // Скрываем неправильный выбор
-                    border.SetWrong(false);
+                    incorrectSelectionOverlay.SetActive(false); // Скрываем неправильный выбор
 
                     // Обновляем рамку для текущего животного
                     var animalCollider = currentAnimalInstance.GetComponent<BoxCollider>();
@@ -131,11 +127,9 @@ public class AnimalQuizManager : MonoBehaviour
 
     private IEnumerator ShowIncorrectOverlay()
     {
-        //incorrectSelectionOverlay.SetActive(true); // Показываем неправильную рамку
-        border.SetWrong(true);
+        incorrectSelectionOverlay.SetActive(true); // Показываем неправильную рамку
         yield return new WaitForSeconds(1f);       // Ждем 1 секунду
-        //incorrectSelectionOverlay.SetActive(false); // Скрываем неправильную рамку
-        border.SetWrong(false);
+        incorrectSelectionOverlay.SetActive(false); // Скрываем неправильную рамку
     }
     private void UpdateOutline(RectTransform outline, BoxCollider collider)
     {
@@ -188,8 +182,7 @@ public class AnimalQuizManager : MonoBehaviour
         isAnimalFound = false;
         selectionOutline.gameObject.SetActive(false);
         SetButtonsInactive(); // Делаем кнопки неактивными
-        //incorrectSelectionOverlay.SetActive(false); // Скрываем неправильную рамку
-        border.SetWrong(false);
+        incorrectSelectionOverlay.SetActive(false); // Скрываем неправильную рамку
 
         // Выбираем случайный вопрос из доступных
         int questionIndex = Random.Range(0, currentAvailableQuestions.Count);

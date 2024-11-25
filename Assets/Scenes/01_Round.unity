@@ -624,81 +624,6 @@ MonoBehaviour:
   wrongBorder: {r: 0.8627451, g: 0, b: 0.015686275, a: 0}
   baseBorder1: {r: 0.3019608, g: 0.9960785, b: 0.9960785, a: 0}
   wrongBorder1: {r: 0.5686275, g: 0.32156864, b: 0.68235296, a: 0}
---- !u!1 &237812091
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 237812092}
-  - component: {fileID: 237812094}
-  - component: {fileID: 237812093}
-  m_Layer: 5
-  m_Name: Image
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &237812092
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 237812091}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1346996994}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -302.81, y: -60.66}
-  m_SizeDelta: {x: 1125.59, y: 719.1}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &237812093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 237812091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 53b001f8852656949a748066ca1c3d60, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &237812094
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 237812091}
-  m_CullTransparentMesh: 1
 --- !u!1 &280351573
 GameObject:
   m_ObjectHideFlags: 0
@@ -1288,8 +1213,8 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 470960211}
   serializedVersion: 8
-  lengthInSec: 5
-  simulationSpeed: 0.3
+  lengthInSec: 12.23
+  simulationSpeed: 1.08
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -1416,7 +1341,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 3.23
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -1534,7 +1459,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.6
+      scalar: 0.97
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1799,7 +1724,7 @@ ParticleSystem:
     startRotation:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 0.90006626
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -1850,8 +1775,8 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    gravitySource: 0
-    maxNumParticles: 1000
+    gravitySource: 1
+    maxNumParticles: 1042
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -1998,7 +1923,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 6.42
       mode: 0
       spread: 0
       speed:
@@ -4635,7 +4560,7 @@ ParticleSystem:
     range: {x: 0, y: 1}
     separateAxes: 0
   RotationBySpeedModule:
-    enabled: 0
+    enabled: 1
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -4692,7 +4617,7 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: -2.740167
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -4795,7 +4720,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    separateAxes: 0
+    separateAxes: 1
     range: {x: 0, y: 1}
   ColorBySpeedModule:
     enabled: 0
@@ -7099,7 +7024,6 @@ RectTransform:
   m_Children:
   - {fileID: 1285021439}
   - {fileID: 8964825543836409437}
-  - {fileID: 237812092}
   - {fileID: 44985207}
   - {fileID: 702482510}
   m_Father: {fileID: 0}
@@ -7137,7 +7061,7 @@ MonoBehaviour:
   - {fileID: 307714009}
   - {fileID: 1010230870}
   animalContainer: {fileID: 296437838}
-  incorrectSelectionOverlay: {fileID: 237812091}
+  incorrectSelectionOverlay: {fileID: 0}
   correctAnswerParticles: {fileID: 470960213}
   gameOverPanel: {fileID: 702482509}
   fixOffsetX: -305
@@ -7599,7 +7523,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
-  m_UseSpriteMesh: 0
+  m_UseSpriteMesh: 1
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &6543960035939689793
 CanvasRenderer:
@@ -7620,6 +7544,7 @@ GameObject:
   - component: {fileID: 8964825543836409437}
   - component: {fileID: 6543960035939689793}
   - component: {fileID: 1608164089311211607}
+  - component: {fileID: 8964825543836409438}
   m_Layer: 5
   m_Name: ImageHard17
   m_TagString: Untagged
@@ -7646,6 +7571,21 @@ RectTransform:
   m_AnchoredPosition: {x: 3539234.5, y: 727985.44}
   m_SizeDelta: {x: 1096.46, y: 663.18}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8964825543836409438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7061270131876090711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0.9215687, b: 0.7803922, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 0
 --- !u!1001 &9104869808854393606
 PrefabInstance:
   m_ObjectHideFlags: 0

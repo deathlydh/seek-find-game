@@ -6172,6 +6172,7 @@ GameObject:
   - component: {fileID: 882864468}
   - component: {fileID: 882864467}
   - component: {fileID: 882864466}
+  - component: {fileID: 882864469}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -6229,6 +6230,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &882864469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882864465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 817a72cc8ab7e3b4e8a5920dc22f3552, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Pool: []
+  Answers: []
+  countForHard: 0
 --- !u!1 &886923862
 GameObject:
   m_ObjectHideFlags: 0
@@ -6846,13 +6862,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreManager: {fileID: 1346996998}
-  animalQuestions:
-  - {fileID: 11400000, guid: dd59ef91f83bec74a9f9fde61fd06f15, type: 2}
-  - {fileID: 11400000, guid: 83b68741d80b9a44591ba4ebc1cba421, type: 2}
-  - {fileID: 11400000, guid: add96441777307d4fa7faf8a90eae188, type: 2}
-  - {fileID: 11400000, guid: e7f6aa3f2ef43664894a34c0d944b3c2, type: 2}
-  - {fileID: 11400000, guid: 6e38feb43fd0cb64ab630ff7faa8d157, type: 2}
-  - {fileID: 11400000, guid: 615261a959ab4d346baeb411c16cb961, type: 2}
+  easyQuestions: []
+  hardQuestions: []
   answerButtons:
   - {fileID: 886923864}
   - {fileID: 465212243}
@@ -6862,6 +6873,10 @@ MonoBehaviour:
   incorrectSelectionOverlay: {fileID: 942743463}
   correctAnswerParticles: {fileID: 470960213}
   gameOverPanel: {fileID: 702482509}
+  fixOffsetX: 0
+  fixOffsetY: 0
+  selectionOutline: {fileID: 0}
+  border: {fileID: 0}
 --- !u!114 &1346996997
 MonoBehaviour:
   m_ObjectHideFlags: 0

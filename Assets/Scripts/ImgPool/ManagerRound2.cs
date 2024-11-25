@@ -9,10 +9,14 @@ public class ManagerRound2 : MonoBehaviour
     [SerializeField]
     private ImgPoolRound2 imgPoolRound2;
 
+    [SerializeField]
+    private PrefDrower prefDrower;
+
     private int TrueAnswerIndex;
 
     public void setImg(GameObject obj)
     {
+        prefDrower.SetImg(obj);
         //воткни отображение вопроса, я не разобрался
     }
 
@@ -24,11 +28,18 @@ public class ManagerRound2 : MonoBehaviour
     public void setAnswers()
     {
         string[] answers = new string[4];
-        int index = UnityEngine.Random.Range(0, answers.Length);
+        int index = UnityEngine.Random.Range(0, 4);
 
         for(int i = 0; i < 4; i++)
         {
-            answers[i] = i != index ? actualQuestion.Answers[i < index ? i : i-1] : actualQuestion.TrueAnswer;
+            if(i != index)
+            {
+                answers[i] = actualQuestion.Answers[i < index ? i : i - 1];
+            }
+            else
+            {
+                answers[i] = actualQuestion.TrueAnswer;
+            }
         }
         TrueAnswerIndex = index;
         Round2MachinState.SetAnswers.Invoke(answers);
@@ -38,11 +49,11 @@ public class ManagerRound2 : MonoBehaviour
     {
         Debug.Log("______________________Manager________________________");
         actualQuestion = imgPoolRound2.GetQuestion();
-        //setImg(actualQuestion.imgPref);
+        setImg(actualQuestion.imgPref);
 
         setAnswers();
 
-        Round2MachinState.SetQuestion.Invoke(actualQuestion);
+        //Round2MachinState.SetQuestion.Invoke(actualQuestion);
         Round2MachinState.ActivateStage1();
     }
 

@@ -76,16 +76,19 @@ public class ImgPoolRound2 : MonoBehaviour
         return index;
     }
 
-    public QuestionRound1 GetQuestion()
+    public QuestionRound2 GetQuestion()
     {
         questionsCount++;
-        PrefabRound2 prefabRound1 = Pool[GetNewIndexQuestion()];
+        PrefabRound2 prefabRound2 = Pool[GetNewIndexQuestion()];
+        bool fl = UnityEngine.Random.Range(0, 10) > 5;
 
-        return new QuestionRound1
+        return new QuestionRound2
         {
-            imgPref = prefabRound1.imgPref,
-            TrueAnswer = prefabRound1.TrueAnswer,
-            Answers = GetNonTrueAnswer(prefabRound1.TrueAnswer)
+            imgPref = prefabRound2.imgPref,
+            TrueAnswer = prefabRound2.TrueAnswer,
+            Answers = GetNonTrueAnswer(prefabRound2.TrueAnswer),
+            isTrueAnswer = fl,
+            supposedAnimal = fl ? prefabRound2.TrueAnswer : GetNonTrueAnswer(prefabRound2.TrueAnswer)[0]
         };
     }
 }

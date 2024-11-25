@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.WSA;
 
 
@@ -11,41 +13,30 @@ public enum Round2State
     Second // угадай зверя
 }
 
-public class Round2MachinState : MonoBehaviour
+public static class Round2MachinState
 {
     [SerializeField]
-    private ImgPoolRound2 pool;
-    QuestionRound2 animal;
+    private static ImgPoolRound2 pool;
+    static QuestionRound2 animal;
 
-    public Round2State state;
-    public Round2State State {
-        get { return state; }
-        private set 
-        { 
-            if (state == Round2State.First && value == Round2State.Second)
-            {
-                ActivateStage2();
-                state = Round2State.Second;
-            }
-            else
-            {
-                ActivateStage1();
-                state = Round2State.First;
-            }
-        }
-    }
+    public static Action ActivStage1;
+    public static Action ActivStage2;
 
-    public void ActivateStage2()
+    static public Round2State State;
+
+    public static void ActivateStage2()
     {
-
+        State = Round2State.Second;
+        ActivStage2.Invoke();
     }
 
-    public void ActivateStage1()
+    public static void ActivateStage1()
     {
-        
+        State = Round2State.First;
+        ActivStage1.Invoke();
     }
 
-    public bool CheckFirst(string choose)
+    public static bool CheckFirst(string choose)
     {
         if (animal.isTrueAnswer)
         {
@@ -54,7 +45,7 @@ public class Round2MachinState : MonoBehaviour
         return choose != animal.TrueAnswer;
     }
 
-    public void GetAnimal()
+    public static void GetAnimal()
     {
         animal = pool.GetQuestion();
     }

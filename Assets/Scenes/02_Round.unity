@@ -6869,7 +6869,7 @@ MonoBehaviour:
   - {fileID: 465212243}
   - {fileID: 307714009}
   - {fileID: 1010230870}
-  animalContainer: {fileID: 296437836}
+  animalContainer: {fileID: 296437838}
   incorrectSelectionOverlay: {fileID: 942743463}
   correctAnswerParticles: {fileID: 470960213}
   gameOverPanel: {fileID: 702482509}

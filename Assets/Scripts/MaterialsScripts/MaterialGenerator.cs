@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class MaterialGenerator : MonoBehaviour
 {
-    // Start is called before the first frame update
     [SerializeField]
     Shader _shader;
     [SerializeField]

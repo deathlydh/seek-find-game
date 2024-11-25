@@ -22,17 +22,22 @@ public static class Round2MachinState
     public static Action ActivStage1;
     public static Action ActivStage2;
 
+    public static Action<QuestionRound2> SetQuestion;
+    public static Action<string[]> SetAnswers;
+
     static public Round2State State;
 
     public static void ActivateStage2()
     {
         State = Round2State.Second;
+        Debug.Log(State);
         ActivStage2.Invoke();
     }
 
     public static void ActivateStage1()
     {
         State = Round2State.First;
+        Debug.Log(State);
         ActivStage1.Invoke();
     }
 

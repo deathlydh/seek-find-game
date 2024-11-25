@@ -746,7 +746,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "d54a96fa8a54454f824f96963cd4f6b8",
     "m_Id": 0,
-    "m_DisplayName": "Mask",
+    "m_DisplayName": "MainTex",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -854,10 +854,10 @@
     "m_Guid": {
         "m_GuidSerialized": "bb2e2192-a295-404e-8d10-4fc65b3ea3e6"
     },
-    "m_Name": "Mask",
+    "m_Name": "MainTex",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Mask",
-    "m_DefaultReferenceName": "_Mask",
+    "m_RefNameGeneratedByDisplayName": "MainTex",
+    "m_DefaultReferenceName": "_MainTex",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,

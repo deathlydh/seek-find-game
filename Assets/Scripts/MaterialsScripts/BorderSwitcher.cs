@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class BorderSwitcher : MonoBehaviour
 {
-    // Start is called before the first frame update
     [SerializeField]
     Color baseBorder;
     [SerializeField]

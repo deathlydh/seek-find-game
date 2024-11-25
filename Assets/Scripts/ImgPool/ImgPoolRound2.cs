@@ -64,11 +64,11 @@ public class ImgPoolRound2 : MonoBehaviour
         do
         {
             index = UnityEngine.Random.Range(0, Pool.Count);
-        } while ( !PreviosQuestion.Contains(index) &&
+        } while ( PreviosQuestion.Contains(index) &&
         (
-        (Pool[index].difficulty > 0) && (questionsCount > countForHard)
+        ! (Pool[index].difficulty > 0) && ! (questionsCount > countForHard)
         ||
-        Pool[index].difficulty == 0
+        Pool[index].difficulty != 0
         ));
 
         PreviosQuestion.Add( index );
@@ -78,9 +78,12 @@ public class ImgPoolRound2 : MonoBehaviour
 
     public QuestionRound2 GetQuestion()
     {
+        Debug.Log("______________________ImgPool________________________");
         questionsCount++;
         PrefabRound2 prefabRound2 = Pool[GetNewIndexQuestion()];
         bool fl = UnityEngine.Random.Range(0, 10) > 5;
+
+        Debug.Log($"{prefabRound2.TrueAnswer}   {prefabRound2.TrueAnswer}");
 
         return new QuestionRound2
         {

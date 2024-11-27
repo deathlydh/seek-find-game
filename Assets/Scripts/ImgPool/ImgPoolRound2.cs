@@ -66,9 +66,7 @@ public class ImgPoolRound2 : MonoBehaviour
             index = UnityEngine.Random.Range(0, Pool.Count);
         } while ( PreviosQuestion.Contains(index) &&
         (
-        ! (Pool[index].difficulty > 0) && ! (questionsCount > countForHard)
-        ||
-        Pool[index].difficulty != 0
+        !(Pool[index].difficulty <= 0) || (Pool[index].difficulty > 0 && questionsCount > countForHard)
         ));
 
         PreviosQuestion.Add( index );

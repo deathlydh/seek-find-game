@@ -15,4 +15,8 @@ public class PrefDrower : MonoBehaviour
         content?.Destroy();
         content = Instantiate(go, border.transform);
     }
+
+    void Awake(){
+        Round2StateMahine.SetImg += SetImg;
+    }
 }

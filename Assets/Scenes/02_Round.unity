@@ -671,10 +671,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 172761315}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1dac36b026ef524fad66283ee0f7235, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b1b939de0a035843a187b5e5780fdd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateActive: 0
+  stage: 0
 --- !u!1 &205630392
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,8 +687,8 @@ GameObject:
   - component: {fileID: 205630396}
   - component: {fileID: 205630395}
   - component: {fileID: 205630394}
-  - component: {fileID: 205630397}
   - component: {fileID: 205630398}
+  - component: {fileID: 205630399}
   m_Layer: 5
   m_Name: Button 3
   m_TagString: Untagged
@@ -761,8 +761,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 882864470}
-        m_TargetAssemblyTypeName: ManagerRound2, Assembly-CSharp
-        m_MethodName: OnClickBtnStage2
+        m_TargetAssemblyTypeName: Round2Controller, Assembly-CSharp
+        m_MethodName: OnStage2Click
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -810,19 +810,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 205630392}
   m_CullTransparentMesh: 1
---- !u!114 &205630397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 205630392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8723939cd03a37848b73bd66a03168d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  indexBtn: 2
 --- !u!114 &205630398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -839,141 +826,20 @@ MonoBehaviour:
   activeSprite: {fileID: 21300000, guid: 1bdf66f0165a75e42a88eb154abf7762, type: 3}
   correctSprite: {fileID: 21300000, guid: 71687ed819e4b3544861aee55023f1b5, type: 3}
   incorrectSprite: {fileID: 21300000, guid: 3192e556a9c625a44874de245ca9538b, type: 3}
---- !u!1 &224023164
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 224023165}
-  - component: {fileID: 224023167}
-  - component: {fileID: 224023166}
-  m_Layer: 5
-  m_Name: Text (TMP)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &224023165
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 224023164}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 418896039}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &224023166
+--- !u!114 &205630399
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 224023164}
+  m_GameObject: {fileID: 205630392}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 02b72690b9c69ee458f16e25777a6bb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: "\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0430 \u0441\u0442\u0430\u0440\u0442
-    \u0441\u0446\u0435\u043D\u044B"
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
-  m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 1
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &224023167
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 224023164}
-  m_CullTransparentMesh: 1
+  stage: 1
+  ind: 2
 --- !u!1 &269970013
 GameObject:
   m_ObjectHideFlags: 0
@@ -985,7 +851,6 @@ GameObject:
   - component: {fileID: 269970014}
   - component: {fileID: 269970015}
   - component: {fileID: 269970016}
-  - component: {fileID: 269970017}
   m_Layer: 5
   m_Name: Button2
   m_TagString: Untagged
@@ -1049,22 +914,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 269970013}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1dac36b026ef524fad66283ee0f7235, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b1b939de0a035843a187b5e5780fdd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateActive: 1
---- !u!114 &269970017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 269970013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e73e688ac9f3b5e409ebe533f723b84b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  stage: 1
 --- !u!1 &280351573
 GameObject:
   m_ObjectHideFlags: 0
@@ -1425,6 +1278,8 @@ GameObject:
   - component: {fileID: 465212245}
   - component: {fileID: 465212244}
   - component: {fileID: 465212243}
+  - component: {fileID: 465212246}
+  - component: {fileID: 465212247}
   m_Layer: 5
   m_Name: ButtonN
   m_TagString: Untagged
@@ -1497,8 +1352,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 882864470}
-        m_TargetAssemblyTypeName: ManagerRound2, Assembly-CSharp
-        m_MethodName: OnClickBtnStage1
+        m_TargetAssemblyTypeName: Round2Controller, Assembly-CSharp
+        m_MethodName: OnStage1Click
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1546,6 +1401,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 465212241}
   m_CullTransparentMesh: 1
+--- !u!114 &465212246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465212241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1a6fef787e422540a1a2f7cfbd79fbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inactiveSprite: {fileID: 21300000, guid: 355e06b6d06a9574e9c4b6b53db9719a, type: 3}
+  activeSprite: {fileID: 21300000, guid: 1bdf66f0165a75e42a88eb154abf7762, type: 3}
+  correctSprite: {fileID: 21300000, guid: 71687ed819e4b3544861aee55023f1b5, type: 3}
+  incorrectSprite: {fileID: 21300000, guid: 3192e556a9c625a44874de245ca9538b, type: 3}
+--- !u!114 &465212247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465212241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b72690b9c69ee458f16e25777a6bb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stage: 0
+  ind: 0
 --- !u!1 &470960211
 GameObject:
   m_ObjectHideFlags: 0
@@ -7565,39 +7450,40 @@ MonoBehaviour:
   m_GameObject: {fileID: 882864465}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 817a72cc8ab7e3b4e8a5920dc22f3552, type: 3}
+  m_Script: {fileID: 11500000, guid: c03897ccd5555cc4da34f0187557c1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Pool:
-  - imgPref: {fileID: 2156715974566502584, guid: e247718effc716246a8450433a09e3a2, type: 3}
-    difficulty: 0
+  - imgPrefabs: {fileID: 2156715974566502584, guid: e247718effc716246a8450433a09e3a2, type: 3}
     TrueAnswer: "\u041E\u043B\u0435\u043D\u044C"
-  - imgPref: {fileID: 6742216158348567645, guid: 73543a116050d0545925bf25f872b016, type: 3}
-    difficulty: 0
+    difficulty: 1
+  - imgPrefabs: {fileID: 6742216158348567645, guid: 73543a116050d0545925bf25f872b016, type: 3}
     TrueAnswer: "\u041E\u043B\u0435\u043D\u044C"
-  - imgPref: {fileID: 3131452642472146900, guid: d4e699c8f30c35147b623e2bb9bd61ab, type: 3}
     difficulty: 0
+  - imgPrefabs: {fileID: 3131452642472146900, guid: d4e699c8f30c35147b623e2bb9bd61ab, type: 3}
     TrueAnswer: "\u041E\u043B\u0435\u043D\u044C"
-  - imgPref: {fileID: 1707528852163131449, guid: f2918a90c01229345a2ee8bf6888d155, type: 3}
     difficulty: 0
-    TrueAnswer: "\u041C\u0430\u043D\u0443\u043B"
-  - imgPref: {fileID: 6940523772806960981, guid: 7d58de3bc9c93d44d949f9b3012fc31d, type: 3}
+  - imgPrefabs: {fileID: 3650270483164574424, guid: 443c5fa479085b34dbd94f9da5e7412e, type: 3}
+    TrueAnswer: "\u0412\u043E\u043B\u043A"
     difficulty: 0
-    TrueAnswer: "\u041E\u043B\u0435\u043D\u044C"
-  - imgPref: {fileID: 3650270483164574424, guid: 443c5fa479085b34dbd94f9da5e7412e, type: 3}
+  - imgPrefabs: {fileID: 8171973131600231342, guid: 296320a37ba213048b18b06b69c2d99d, type: 3}
+    TrueAnswer: "\u041C\u0435\u0434\u0432\u0435\u0434\u044C"
     difficulty: 0
-    TrueAnswer: "\u0421\u043E\u0431\u043B\u044C"
+  - imgPrefabs: {fileID: 681628129662953455, guid: f6a9f6ee2c0927d47b550dd2b6f60d22, type: 3}
+    TrueAnswer: "\u0412\u043E\u043B\u043A"
+    difficulty: 1
+  - imgPrefabs: {fileID: 202762058008126694, guid: c3b642bd2aae9df4596734791ef70e86, type: 3}
+    TrueAnswer: "\u0427\u0442\u043E-\u0442\u043E \u0441 \u0445\u0432\u043E\u0441\u0442\u043E\u043C"
+    difficulty: 1
   Answers:
-  - "\u0425\u043E\u0440\u0451\u043A"
-  - "\u041A\u0440\u043E\u0442"
-  - "\u0417\u0430\u044F\u0446"
-  - "\u0412\u043E\u043B\u043A"
-  - "\u041C\u0443\u043B"
-  - "\u0421\u043E\u0431\u043B\u044C"
-  - "\u041E\u043B\u0435\u043D\u044C"
-  - "\u041A\u043E\u0442"
-  - "\u041B\u0435\u0432"
-  countForHard: 3
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  CountForHard: 3
 --- !u!114 &882864470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7607,11 +7493,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 882864465}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc63d1f02d5585242bcc6be947d143c3, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b69b6c17f9bc31459752b81a87b6e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imgPoolRound2: {fileID: 882864469}
-  prefDrower: {fileID: 1285021442}
 --- !u!1 &886923862
 GameObject:
   m_ObjectHideFlags: 0
@@ -7624,6 +7508,8 @@ GameObject:
   - component: {fileID: 886923866}
   - component: {fileID: 886923865}
   - component: {fileID: 886923864}
+  - component: {fileID: 886923867}
+  - component: {fileID: 886923868}
   m_Layer: 5
   m_Name: ButtonY
   m_TagString: Untagged
@@ -7696,8 +7582,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 882864470}
-        m_TargetAssemblyTypeName: ManagerRound2, Assembly-CSharp
-        m_MethodName: OnClickBtnStage1
+        m_TargetAssemblyTypeName: Round2Controller, Assembly-CSharp
+        m_MethodName: OnStage1Click
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7745,6 +7631,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 886923862}
   m_CullTransparentMesh: 1
+--- !u!114 &886923867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886923862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1a6fef787e422540a1a2f7cfbd79fbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inactiveSprite: {fileID: 21300000, guid: 355e06b6d06a9574e9c4b6b53db9719a, type: 3}
+  activeSprite: {fileID: 21300000, guid: 1bdf66f0165a75e42a88eb154abf7762, type: 3}
+  correctSprite: {fileID: 21300000, guid: 71687ed819e4b3544861aee55023f1b5, type: 3}
+  incorrectSprite: {fileID: 21300000, guid: 3192e556a9c625a44874de245ca9538b, type: 3}
+--- !u!114 &886923868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886923862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b72690b9c69ee458f16e25777a6bb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stage: 0
+  ind: 0
 --- !u!1 &955491274
 GameObject:
   m_ObjectHideFlags: 0
@@ -8108,8 +8024,8 @@ GameObject:
   - component: {fileID: 1283000344}
   - component: {fileID: 1283000343}
   - component: {fileID: 1283000342}
-  - component: {fileID: 1283000345}
   - component: {fileID: 1283000346}
+  - component: {fileID: 1283000347}
   m_Layer: 5
   m_Name: Button 2
   m_TagString: Untagged
@@ -8182,8 +8098,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 882864470}
-        m_TargetAssemblyTypeName: ManagerRound2, Assembly-CSharp
-        m_MethodName: OnClickBtnStage2
+        m_TargetAssemblyTypeName: Round2Controller, Assembly-CSharp
+        m_MethodName: OnStage2Click
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8231,19 +8147,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1283000340}
   m_CullTransparentMesh: 1
---- !u!114 &1283000345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1283000340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8723939cd03a37848b73bd66a03168d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  indexBtn: 1
 --- !u!114 &1283000346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8260,6 +8163,20 @@ MonoBehaviour:
   activeSprite: {fileID: 21300000, guid: 1bdf66f0165a75e42a88eb154abf7762, type: 3}
   correctSprite: {fileID: 21300000, guid: 71687ed819e4b3544861aee55023f1b5, type: 3}
   incorrectSprite: {fileID: 21300000, guid: 3192e556a9c625a44874de245ca9538b, type: 3}
+--- !u!114 &1283000347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283000340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b72690b9c69ee458f16e25777a6bb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stage: 1
+  ind: 1
 --- !u!1 &1285021438
 GameObject:
   m_ObjectHideFlags: 0
@@ -8788,8 +8705,8 @@ GameObject:
   - component: {fileID: 1543440054}
   - component: {fileID: 1543440053}
   - component: {fileID: 1543440052}
-  - component: {fileID: 1543440055}
   - component: {fileID: 1543440056}
+  - component: {fileID: 1543440057}
   m_Layer: 5
   m_Name: Button 4
   m_TagString: Untagged
@@ -8862,8 +8779,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 882864470}
-        m_TargetAssemblyTypeName: ManagerRound2, Assembly-CSharp
-        m_MethodName: OnClickBtnStage2
+        m_TargetAssemblyTypeName: Round2Controller, Assembly-CSharp
+        m_MethodName: OnStage2Click
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8911,19 +8828,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1543440050}
   m_CullTransparentMesh: 1
---- !u!114 &1543440055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1543440050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8723939cd03a37848b73bd66a03168d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  indexBtn: 3
 --- !u!114 &1543440056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8940,6 +8844,20 @@ MonoBehaviour:
   activeSprite: {fileID: 21300000, guid: 1bdf66f0165a75e42a88eb154abf7762, type: 3}
   correctSprite: {fileID: 21300000, guid: 71687ed819e4b3544861aee55023f1b5, type: 3}
   incorrectSprite: {fileID: 21300000, guid: 3192e556a9c625a44874de245ca9538b, type: 3}
+--- !u!114 &1543440057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543440050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b72690b9c69ee458f16e25777a6bb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stage: 1
+  ind: 3
 --- !u!1 &1549831780
 GameObject:
   m_ObjectHideFlags: 0
@@ -9869,8 +9787,8 @@ GameObject:
   - component: {fileID: 2107929190}
   - component: {fileID: 2107929189}
   - component: {fileID: 2107929188}
-  - component: {fileID: 2107929191}
   - component: {fileID: 2107929192}
+  - component: {fileID: 2107929193}
   m_Layer: 5
   m_Name: Button 1
   m_TagString: Untagged
@@ -9943,8 +9861,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 882864470}
-        m_TargetAssemblyTypeName: ManagerRound2, Assembly-CSharp
-        m_MethodName: OnClickBtnStage2
+        m_TargetAssemblyTypeName: Round2Controller, Assembly-CSharp
+        m_MethodName: OnStage2Click
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9992,19 +9910,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2107929186}
   m_CullTransparentMesh: 1
---- !u!114 &2107929191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2107929186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8723939cd03a37848b73bd66a03168d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  indexBtn: 0
 --- !u!114 &2107929192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10021,6 +9926,20 @@ MonoBehaviour:
   activeSprite: {fileID: 21300000, guid: 1bdf66f0165a75e42a88eb154abf7762, type: 3}
   correctSprite: {fileID: 21300000, guid: 71687ed819e4b3544861aee55023f1b5, type: 3}
   incorrectSprite: {fileID: 21300000, guid: 3192e556a9c625a44874de245ca9538b, type: 3}
+--- !u!114 &2107929193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107929186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b72690b9c69ee458f16e25777a6bb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stage: 1
+  ind: 0
 --- !u!114 &1608164089311211607
 MonoBehaviour:
   m_ObjectHideFlags: 0

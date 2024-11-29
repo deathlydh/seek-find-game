@@ -38,7 +38,7 @@ public class BorderSwitcher : MonoBehaviour
 
     public void SetWrong(bool IsWrong)
     {
-        if (IsWrong) 
+        if (!IsWrong) 
         {
             setMat(baseBorder, baseBorder1);
         }

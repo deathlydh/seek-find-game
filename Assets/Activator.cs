@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,7 +32,48 @@ public class Activator : MonoBehaviour
             this.GetComponent<QuizButtonController>().SetInactive();
         }
     }
+
+    void SetWrong(int notTrueAnswerIndex, int TrueAnswerIndex){
+        if(notTrueAnswerIndex == ind){
+            GetComponent<QuizButtonController>().SetIncorrect();
+        }else{
+            if(TrueAnswerIndex == ind){
+                GetComponent<QuizButtonController>().SetActive();
+            }
+            else
+            {
+                GetComponent<QuizButtonController>().SetInactive();
+            }
+        }
+    }
+
+    void SetWrong(bool TrueAnswer){
+        if(TrueAnswer == (ind > 0)){
+            GetComponent<QuizButtonController>().SetCorrect();
+            Debug.Log("SetWrong");
+        }else{
+            GetComponent<QuizButtonController>().SetIncorrect();
+        }
+            
+    }
     
+    private void SetGood(bool TrueAnswer)
+    {
+        if(TrueAnswer == (ind>0)){
+            GetComponent<QuizButtonController>().SetActive();
+        }else{
+            GetComponent<QuizButtonController>().SetInactive();
+        }
+    }
+
+    private void SetGood(int TrueAnswer)
+    {
+        if(TrueAnswer == ind){
+            GetComponent<QuizButtonController>().SetCorrect();
+        }else{
+            GetComponent<QuizButtonController>().SetInactive();
+        }
+    }
 
     void Awake()
     {
@@ -40,11 +82,16 @@ public class Activator : MonoBehaviour
         if(stage == StateRound2.Stage1){
             StagePanelController.Sctiv1+=Show;
             Round2StateMahine.setStage2+=Hide;
+
+            Round2StateMahine.OnGoodStage += SetGood;
+            Round2StateMahine.OnWrongStage += SetWrong;
         }else{
             StagePanelController.Sctiv2+=Show;
             Round2StateMahine.setStage1+=Hide;
 
+            Round2StateMahine.OnGoodStage2 += SetGood;
             Round2StateMahine.SetAnswers += SetText;
-        }
+            Round2StateMahine.OnWrongStage2 += SetWrong;
+        }  
     }
 }

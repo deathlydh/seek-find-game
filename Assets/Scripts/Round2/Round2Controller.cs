@@ -25,41 +25,53 @@ public class Round2Controller : MonoBehaviour
         actualAnimal = GetComponent<Round2ImgPool>().GetNewFrameInfo();
         DetermineAnswers();
 
-
-
         Round2StateMahine.SetAnswers?.Invoke(answers);
         Round2StateMahine.SetImg?.Invoke(actualAnimal.imgPrefabs);
+        Round2StateMahine.OnGoodStage.Invoke(true);
 
         Round2StateMahine.setStage1();
     }
 
     private void WrongAnswer(){
-
+        Round2StateMahine.OnWrongStage.Invoke(actualAnimal.AnswerIsTrue);
     }
 
-    private void GoodAnswer(){
+    private void WrongAnswer(int _ind){
+        Round2StateMahine.OnWrongStage2.Invoke(_ind, TrueAnswerIndex);
+    }
 
+    private void GoodAnswer(bool answer){
+        Round2StateMahine.OnGoodStage.Invoke(answer);
+        Round2StateMahine.OnGoodStage2.Invoke(TrueAnswerIndex);
+    }
+
+    private void SetStage2(){
+        Round2StateMahine.setStage2();
     }
 
     public void OnStage1Click(bool _answer){
         if(_answer == actualAnimal.AnswerIsTrue){
             if(actualAnimal.AnswerIsTrue){
-                GoodAnswer();
-                ChangeFrame();
+                GoodAnswer(actualAnimal.AnswerIsTrue);
+                Invoke("ChangeFrame", 1.5f);
             }else{
-                Round2StateMahine.setStage2();
+                GoodAnswer(actualAnimal.AnswerIsTrue);
+                Invoke("SetStage2", 1.5f);
             }
             
         }else{
             WrongAnswer();
+            Invoke("ChangeFrame", 1.5f);
         }
     }
 
     public void OnStage2Click(int _answer){
         if(_answer == TrueAnswerIndex){
-            ChangeFrame();
+            GoodAnswer(actualAnimal.AnswerIsTrue);
+            Invoke("ChangeFrame", 1.5f);
         }else{
-            WrongAnswer();
+            WrongAnswer(_answer);
+            Invoke("ChangeFrame", 1.5f);
         }
     }
 

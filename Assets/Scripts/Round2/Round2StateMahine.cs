@@ -21,6 +21,12 @@ public static class Round2StateMahine
     public static Action setStage1;
     public static Action setStage2;
 
+    public static Action<int, int> OnWrongStage2;
+    public static Action<bool> OnWrongStage;
+
+    public static Action<int> OnGoodStage2;
+    public static Action<bool> OnGoodStage;
+
     private static StateRound2 state = StateRound2.Stage1;
     public static StateRound2 State
     {

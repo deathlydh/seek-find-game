@@ -7,6 +7,8 @@ public class Round2Controller : MonoBehaviour
     private PrefabWithAnswers actualAnimal;
     private int TrueAnswerIndex;
     private string[] answers = new string[4];
+    private bool PoolIsNotEmpty = true;
+    private int CountAnswers = 0;
     
     private void DetermineAnswers(){
         TrueAnswerIndex = UnityEngine.Random.Range(0, answers.Length);
@@ -22,14 +24,18 @@ public class Round2Controller : MonoBehaviour
     }
 
     private void ChangeFrame(){
-        actualAnimal = GetComponent<Round2ImgPool>().GetNewFrameInfo();
-        DetermineAnswers();
+        if(PoolIsNotEmpty){
+            actualAnimal = GetComponent<Round2ImgPool>().GetNewFrameInfo();
+            DetermineAnswers();
 
-        Round2StateMahine.SetAnswers?.Invoke(answers);
-        Round2StateMahine.SetImg?.Invoke(actualAnimal.imgPrefabs);
-        Round2StateMahine.OnGoodStage.Invoke(true);
+            Round2StateMahine.SetAnswers?.Invoke(answers);
+            Round2StateMahine.SetImg?.Invoke(actualAnimal.imgPrefabs);
+            Round2StateMahine.OnGoodStage.Invoke(true);
 
-        Round2StateMahine.setStage1();
+            Round2StateMahine.OnSetAnimal.Invoke(actualAnimal.supAnswer);
+
+            Round2StateMahine.setStage1();
+        }
     }
 
     private void WrongAnswer(){
@@ -53,6 +59,7 @@ public class Round2Controller : MonoBehaviour
         if(_answer == actualAnimal.AnswerIsTrue){
             if(actualAnimal.AnswerIsTrue){
                 GoodAnswer(actualAnimal.AnswerIsTrue);
+                CountAnswers++;
                 Invoke("ChangeFrame", 1.5f);
             }else{
                 GoodAnswer(actualAnimal.AnswerIsTrue);
@@ -68,6 +75,7 @@ public class Round2Controller : MonoBehaviour
     public void OnStage2Click(int _answer){
         if(_answer == TrueAnswerIndex){
             GoodAnswer(actualAnimal.AnswerIsTrue);
+            CountAnswers++;
             Invoke("ChangeFrame", 1.5f);
         }else{
             WrongAnswer(_answer);
@@ -75,8 +83,18 @@ public class Round2Controller : MonoBehaviour
         }
     }
 
-    void Start(){
+    private void Final(){
+        PoolIsNotEmpty = false;
+        SaveSystem.Save(CountAnswers);
+    }
+
+    public void StartGame(){
+
+        SaveSystem.SaveFirstStage(SaveSystem.GetSave(SaveSystem.count-1));
+
         ChangeFrame();
         Round2StateMahine.setStage1();
+
+        Round2StateMahine.OnPoolEmpty += Final;
     }
 }

@@ -23,7 +23,7 @@ public class BorderSwitcher : MonoBehaviour
         Border = GetComponent<Image>();
         Border1 = this.gameObject.transform.GetChild(0).GetComponent<Image>();
 
-        Round2StateMahine.OnWrongStage += SetWrong;
+        Round2StateMahine.OnWrongStage += SetWrong1;
         Round2StateMahine.OnGoodStage += SetGood;
 
         Round2StateMahine.OnWrongStage2 += SetWrong;
@@ -48,20 +48,20 @@ public class BorderSwitcher : MonoBehaviour
         }
     }
 
-    private void SetWrong()
+    private void SetWrong1(bool IsWrong)
     {
-        SetWrong(false);
+        SetWrong(true);
     }
     private void SetGood(bool a)
     {
-        SetWrong(true);
+        SetWrong(false);
     }
     private void SetWrong(int a, int b)
     {
-        SetWrong(false);
+        SetWrong(true);
     }
     private void SetGood(int a)
     {
-        SetWrong(true);
+        SetWrong(false);
     }
 }

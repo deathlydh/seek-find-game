@@ -16,6 +16,12 @@ public struct PrefabWithAnswers{
     public string supAnswer;
 }
 
+[Serializable]
+    public struct Trans{
+        public Vector3 position;
+        public Vector2 scale;
+    }
+
 public static class Round2StateMahine
 {
     public static Action setStage1;
@@ -26,6 +32,14 @@ public static class Round2StateMahine
 
     public static Action<int> OnGoodStage2;
     public static Action<bool> OnGoodStage;
+
+    public static Action OnPoolEmpty;
+    public static Action<string> OnSetAnimal;
+
+    public static Action<Trans> SetLittleBorder;
+
+    public static Action EndGame;
+    public static Action StartGame;
 
     private static StateRound2 state = StateRound2.Stage1;
     public static StateRound2 State

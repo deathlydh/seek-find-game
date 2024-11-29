@@ -14,6 +14,7 @@ public class Round2ImgPool : MonoBehaviour
         public bool difficulty;
     }
 
+
     [SerializeField]
     private List<Animal> Pool = new List<Animal>();
     private List<Animal> _pool = new List<Animal>();
@@ -22,8 +23,10 @@ public class Round2ImgPool : MonoBehaviour
     private List<string> _answers = new List<string>();
 
     [SerializeField]
-    private int CountForHard;
+    private List<Trans> borders = new List<Trans>();
 
+    [SerializeField]
+    private int CountForHard;
     private int CountPassFrame = 0;
 
     void Start()
@@ -35,16 +38,20 @@ public class Round2ImgPool : MonoBehaviour
     public Animal GetNewFrame()
     {
         Animal anim;
-        if( _pool.Count == 0 )
+        int index = 0;
+        if( _pool.Count == 0 && CountPassFrame < 5)
             _pool = new List<Animal>(Pool.ToArray());
         do
         {   
-            int index = UnityEngine.Random.Range(0,  _pool.Count-1);
+            index = UnityEngine.Random.Range(0,  _pool.Count);
             anim = _pool[index];
         }
         while(!(!anim.difficulty || ( anim.difficulty && CountPassFrame > CountForHard)));
+        Debug.Log($"pool[{index}] obj:{anim.imgPrefabs} {borders[index].position}");
+        Round2StateMahine.SetLittleBorder.Invoke(borders[index]);
 
-        _pool.Remove(anim);
+        borders.RemoveAt(index);
+        _pool.RemoveAt(index);
         return anim;
     }
 
@@ -59,7 +66,6 @@ public class Round2ImgPool : MonoBehaviour
             do
             {
                 index = UnityEngine.Random.Range(0, _answers.Count-1);
-                Debug.Log($"{_answers.Count} {index} {trueAnswer == _answers[index]}");
             }
             while(trueAnswer == _answers[index] && answers.Contains<string>(_answers[index]));
 
@@ -71,11 +77,13 @@ public class Round2ImgPool : MonoBehaviour
     }
 
     public PrefabWithAnswers GetNewFrameInfo(){
+        if (_pool.Count < 2){
+            Round2StateMahine.OnPoolEmpty.Invoke();
+        }
+
         Animal Frame  = GetNewFrame();
         string[] notTrueAnswers = GetUnTrueAnswers( Frame.TrueAnswer);
         bool IsTrue = UnityEngine.Random.Range(0, 15) > 5;
-
-        Debug.Log(Frame.TrueAnswer);
 
         CountPassFrame++;
         return new PrefabWithAnswers()

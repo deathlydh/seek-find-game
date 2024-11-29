@@ -299,6 +299,10 @@ public class AnimalQuizManager : MonoBehaviour
         if (selectedAnswer == correctAnswer)
         {
             scoreManager.score++;
+            
+           
+            SaveSystem.Save(scoreManager.score); // Сохранить очки в системе сейвов
+            
             Debug.Log("Правильный ответ!");
             // Запускаем эффект частиц в верхней части экрана
             if (correctAnswerParticles != null)

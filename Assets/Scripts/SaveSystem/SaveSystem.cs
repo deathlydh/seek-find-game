@@ -37,7 +37,8 @@ public static class SaveSystem
     {
         count++;
         PlayerPrefs.SetInt(_count, count);
-        PlayerPrefs.SetInt(_save + (count-1).ToString(), score);
+        PlayerPrefs.SetInt(_save + (count - 1).ToString(), score);
+        Debug.Log("Сохранён счёт: " + score);  // Выводим сохранённый счёт в консоль
     }
 
     public static int GetCount()

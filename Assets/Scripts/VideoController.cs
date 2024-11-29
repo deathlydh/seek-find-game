@@ -40,5 +40,26 @@ public class VideoController1 : MonoBehaviour
             uiPanel.SetActive(true);
 
         videoPlaying = false; // Обновляем статус
+
+        // Запускаем таймер на повторное включение видео
+        StartCoroutine(ShowVideoAfterDelay(60f));
+    }
+
+    IEnumerator ShowVideoAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        // Включаем видео
+        if (videoPlayer != null)
+        {
+            videoPlayer.gameObject.SetActive(true); // Включаем объект с VideoPlayer
+            videoPlayer.Play(); // Запускаем видео
+        }
+
+        // Скрываем интерфейс
+        if (uiPanel != null)
+            uiPanel.SetActive(false);
+
+        videoPlaying = true; // Обновляем статус
     }
 }

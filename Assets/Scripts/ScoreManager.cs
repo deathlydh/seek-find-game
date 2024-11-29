@@ -8,8 +8,8 @@ public class ScoreManager : MonoBehaviour
     //public TextMeshProUGUI scoreText;
     public TextMeshProUGUI finalScoreText;
     public int score = 0;
-   // public void UpdateScore()
-   // {
-    //    scoreText.text = "Score: " + score.ToString();
-   // }
+    public void SaveScore()
+    {
+        SaveSystem.Save(score); // Сохранить очки в системе сейвов
+    }
 }

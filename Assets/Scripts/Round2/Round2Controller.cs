@@ -9,6 +9,8 @@ public class Round2Controller : MonoBehaviour
     private string[] answers = new string[4];
     private bool PoolIsNotEmpty = true;
     public static int CountAnswers = 0;
+    [SerializeField]
+    public ParticleSystem p;
     
     private void DetermineAnswers(){
         TrueAnswerIndex = UnityEngine.Random.Range(0, answers.Length);
@@ -24,6 +26,7 @@ public class Round2Controller : MonoBehaviour
     }
 
     private void ChangeFrame(){
+        p.Stop();
         if(PoolIsNotEmpty){
             actualAnimal = GetComponent<Round2ImgPool>().GetNewFrameInfo();
             DetermineAnswers();
@@ -59,6 +62,7 @@ public class Round2Controller : MonoBehaviour
         if(_answer == actualAnimal.AnswerIsTrue){
             Debug.Log($"CountAnswers {CountAnswers}");
             if(actualAnimal.AnswerIsTrue){
+                p.Play();
                 GoodAnswer(actualAnimal.AnswerIsTrue);
                 CountAnswers++;
                 Invoke("ChangeFrame", 1.5f);
@@ -75,6 +79,7 @@ public class Round2Controller : MonoBehaviour
 
     public void OnStage2Click(int _answer){
         if(_answer == TrueAnswerIndex){
+            p.Play();
             GoodAnswer(actualAnimal.AnswerIsTrue);
             CountAnswers++;
             Debug.Log($"CountAnswers {CountAnswers}");
@@ -90,6 +95,7 @@ public class Round2Controller : MonoBehaviour
     }
 
     public void Start(){
+        p.Stop();
         Round2StateMahine.EndGame += Final;
     }
 

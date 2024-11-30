@@ -268,7 +268,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 546248231}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 1fa993c475666164ca2603db61fbd8d9, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: b08dde9ed6dae0049bb612621b98b193, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 1527336020}
@@ -760,6 +760,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   videoPlayer: {fileID: 546248232}
   uiPanel: {fileID: 561330824}
+  videoFileName: Sbervideo.mp4
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

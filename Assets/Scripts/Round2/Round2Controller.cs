@@ -8,7 +8,7 @@ public class Round2Controller : MonoBehaviour
     private int TrueAnswerIndex;
     private string[] answers = new string[4];
     private bool PoolIsNotEmpty = true;
-    private int CountAnswers = 0;
+    public static int CountAnswers = 0;
     
     private void DetermineAnswers(){
         TrueAnswerIndex = UnityEngine.Random.Range(0, answers.Length);
@@ -32,7 +32,7 @@ public class Round2Controller : MonoBehaviour
             Round2StateMahine.SetImg?.Invoke(actualAnimal.imgPrefabs);
             Round2StateMahine.OnGoodStage.Invoke(true);
 
-            Round2StateMahine.OnSetAnimal.Invoke(actualAnimal.supAnswer);
+            Round2StateMahine.OnSetAnimal?.Invoke(actualAnimal.supAnswer);
 
             Round2StateMahine.setStage1();
         }
@@ -57,6 +57,7 @@ public class Round2Controller : MonoBehaviour
 
     public void OnStage1Click(bool _answer){
         if(_answer == actualAnimal.AnswerIsTrue){
+            Debug.Log($"CountAnswers {CountAnswers}");
             if(actualAnimal.AnswerIsTrue){
                 GoodAnswer(actualAnimal.AnswerIsTrue);
                 CountAnswers++;
@@ -76,6 +77,7 @@ public class Round2Controller : MonoBehaviour
         if(_answer == TrueAnswerIndex){
             GoodAnswer(actualAnimal.AnswerIsTrue);
             CountAnswers++;
+            Debug.Log($"CountAnswers {CountAnswers}");
             Invoke("ChangeFrame", 1.5f);
         }else{
             WrongAnswer(_answer);
@@ -85,16 +87,21 @@ public class Round2Controller : MonoBehaviour
 
     private void Final(){
         PoolIsNotEmpty = false;
-        SaveSystem.Save(CountAnswers);
+    }
+
+    public void Start(){
+        Round2StateMahine.EndGame += Final;
     }
 
     public void StartGame(){
-
         SaveSystem.SaveFirstStage(SaveSystem.GetSave(SaveSystem.count-1));
+        Round2StateMahine.setStage1.Invoke();
+        Round2StateMahine.StartGame.Invoke();
 
         ChangeFrame();
-        Round2StateMahine.setStage1();
+    }
 
-        Round2StateMahine.OnPoolEmpty += Final;
+    void OnDestroy(){
+        Round2StateMahine.EndGame -= Final;
     }
 }

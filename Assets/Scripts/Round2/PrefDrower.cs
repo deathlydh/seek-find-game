@@ -19,4 +19,7 @@ public class PrefDrower : MonoBehaviour
     void Awake(){
         Round2StateMahine.SetImg += SetImg;
     }
+    void OnDestroy(){
+        Round2StateMahine.SetImg -= SetImg;
+    }
 }

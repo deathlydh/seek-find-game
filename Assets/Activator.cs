@@ -9,6 +9,9 @@ public class Activator : MonoBehaviour
     StateRound2 stage;
     [SerializeField]
     int ind;
+    [SerializeField]
+    QuizButtonController btn;
+
 
     void Show(){
         gameObject.SetActive(true);
@@ -50,7 +53,6 @@ public class Activator : MonoBehaviour
     void SetWrong(bool TrueAnswer){
         if(TrueAnswer == (ind > 0)){
             GetComponent<QuizButtonController>().SetCorrect();
-            Debug.Log("SetWrong");
         }else{
             GetComponent<QuizButtonController>().SetIncorrect();
         }
@@ -60,7 +62,7 @@ public class Activator : MonoBehaviour
     private void SetGood(bool TrueAnswer)
     {
         if(TrueAnswer == (ind>0)){
-            GetComponent<QuizButtonController>().SetActive();
+            GetComponent<QuizButtonController>().SetCorrect();
         }else{
             GetComponent<QuizButtonController>().SetInactive();
         }
@@ -74,11 +76,7 @@ public class Activator : MonoBehaviour
             GetComponent<QuizButtonController>().SetInactive();
         }
     }
-
-    void Awake()
-    {
-        GetComponent<QuizButtonController>().SetActive();
-
+    void Start(){
         if(stage == StateRound2.Stage1){
             StagePanelController.Sctiv1+=Show;
             Round2StateMahine.setStage2+=Hide;
@@ -94,4 +92,41 @@ public class Activator : MonoBehaviour
             Round2StateMahine.OnWrongStage2 += SetWrong;
         }  
     }
+
+    void OnDestroy()
+    {
+        if(stage == StateRound2.Stage1){
+            StagePanelController.Sctiv1-=Show;
+            Round2StateMahine.setStage2-=Hide;
+
+            Round2StateMahine.OnGoodStage -= SetGood;
+            Round2StateMahine.OnWrongStage -= SetWrong;
+        }else{
+            StagePanelController.Sctiv2-=Show;
+            Round2StateMahine.setStage1-=Hide;
+
+            Round2StateMahine.OnGoodStage2 -= SetGood;
+            Round2StateMahine.SetAnswers -= SetText;
+            Round2StateMahine.OnWrongStage2 -= SetWrong;
+        }
+    }
 }
+/*
+    void Awake()
+    {
+        if(stage == StateRound2.Stage1){
+            StagePanelController.Sctiv1+=Show;
+            Round2StateMahine.setStage2+=Hide;
+
+            Round2StateMahine.OnGoodStage += SetGood;
+            Round2StateMahine.OnWrongStage += SetWrong;
+        }else{
+            StagePanelController.Sctiv2+=Show;
+            Round2StateMahine.setStage1+=Hide;
+
+            Round2StateMahine.OnGoodStage2 += SetGood;
+            Round2StateMahine.SetAnswers += SetText;
+            Round2StateMahine.OnWrongStage2 += SetWrong;
+        }  
+    }*/
+

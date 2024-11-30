@@ -23,6 +23,7 @@ public class Round2TimeManager : MonoBehaviour
 
     public void StartTimer()
     {
+        Debug.Log("����� �����.");
         if (!timerRunning)
         {
             timerRunning = true;
@@ -43,6 +44,8 @@ public class Round2TimeManager : MonoBehaviour
             if (currentTime <= 0)
             {
                 Debug.Log("����� �����.");
+                SaveSystem.Save(Round2Controller.CountAnswers);
+                Round2StateMahine.EndGame.Invoke();
                 timerRunning = false;
             }
         }

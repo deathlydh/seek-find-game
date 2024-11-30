@@ -32,8 +32,6 @@ public static class Round2StateMahine
 
     public static Action<int> OnGoodStage2;
     public static Action<bool> OnGoodStage;
-
-    public static Action OnPoolEmpty;
     public static Action<string> OnSetAnimal;
 
     public static Action<Trans> SetLittleBorder;
@@ -54,6 +52,9 @@ public static class Round2StateMahine
 
     public static Action<string[]> SetAnswers;
     public static Action<GameObject> SetImg;
+
+    public static void init(){
+    }
 
     public static void SetStage1()
     {

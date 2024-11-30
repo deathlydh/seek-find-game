@@ -8,24 +8,24 @@ using UnityEngine.UI;
 public class AnimalQuizManager : MonoBehaviour
 {
     public ScoreManager scoreManager;
-    public AnimalQuestionConfig[] easyQuestions; // Лёгкие вопросы
-    public AnimalQuestionConfig[] hardQuestions; // Сложные вопросы
-    private List<AnimalQuestionConfig> availableEasyQuestions; // Доступные лёгкие вопросы
-    private List<AnimalQuestionConfig> availableHardQuestions; // Доступные сложные вопросы
-    private bool isEasyPhase = true; // Список доступных вопросов
-    public Button[] answerButtons;                 // Массив кнопок для ответов
-    [SerializeField] private RectTransform animalContainer;             // Контейнер для префабов животных
-    public GameObject incorrectSelectionOverlay;   // Объект с красной рамкой для неправильного выбора
-    public ParticleSystem correctAnswerParticles;  // Префаб для частиц правильного ответа
-    private GameObject currentAnimalInstance;      // Ссылка на текущий префаб животного
+    public AnimalQuestionConfig[] easyQuestions; // ЛёпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    public AnimalQuestionConfig[] hardQuestions; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    private List<AnimalQuestionConfig> availableEasyQuestions; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    private List<AnimalQuestionConfig> availableHardQuestions; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    private bool isEasyPhase = true; // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    public Button[] answerButtons;                 // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    [SerializeField] private RectTransform animalContainer;             // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    public GameObject incorrectSelectionOverlay;   // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    public ParticleSystem correctAnswerParticles;  // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    private GameObject currentAnimalInstance;      // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     public GameObject gameOverPanel;
 
-    [SerializeField] private float fixOffsetX = 0f; // Смещение по X для рамки
-    [SerializeField] private float fixOffsetY = 0f; // Смещение по Y для рамки
+    [SerializeField] private float fixOffsetX = 0f; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ X пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+    [SerializeField] private float fixOffsetY = 0f; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ Y пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
     public Image selectionOutline;
 
-    private AnimalQuestionConfig currentQuestion;  // Текущий вопрос
+    private AnimalQuestionConfig currentQuestion;  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     private string correctAnswer;
     private bool isAnimalFound = false;
     private bool isQuizStarted = false;
@@ -41,24 +41,24 @@ public class AnimalQuizManager : MonoBehaviour
         availableHardQuestions = new List<AnimalQuestionConfig>(hardQuestions);
         containerCollider = animalContainer.GetComponent<BoxCollider2D>();
         gameOverPanel.SetActive(false);
-        //incorrectSelectionOverlay.SetActive(false); // Скрываем рамку при старте
+        //incorrectSelectionOverlay.SetActive(false); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         border.SetWrong(false);
 
-        SetButtonsInactive(); // Делаем кнопки неактивными при старте
+        SetButtonsInactive(); // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         SaveSystem.init();
     }
 
-    // Метод для начала викторины
+    // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     public void StartQuiz()
     {
-        isQuizStarted = true; // Устанавливаем флаг, что викторина началась
+        isQuizStarted = true; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         LoadNewQuestion();
-        SetButtonsInactive(); // Делаем кнопки неактивными при старте
+        SetButtonsInactive(); // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     }
 
     private void Update()
     {
-        if (!isQuizStarted) return; // Если викторина не началась, ничего не делаем
+        if (!isQuizStarted) return; // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
         bool isTouchDetected = Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began;
 
@@ -68,12 +68,12 @@ public class AnimalQuizManager : MonoBehaviour
         }
     }
 
-    // Метод для проверки, было ли найдено животное
+    // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     void CheckAnimal()
     {
         Vector2 clickPosition;
 
-        // Определяем позицию клика (мышь или сенсор)
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ)
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             clickPosition = Input.GetTouch(0).position;
@@ -84,139 +84,139 @@ public class AnimalQuizManager : MonoBehaviour
         }
         else
         {
-            return; // Если ничего не нажато, выходим из метода
+            return; // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         }
 
-        // Переводим позицию клика из экранных координат в луч из камеры
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         Ray ray = Camera.main.ScreenPointToRay(clickPosition);
 
-        // Выполняем проверку на попадание по BoxCollider
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ BoxCollider
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             if (hit.collider != null)
             {
-                // Проверяем, попали ли мы по текущему животному
+                // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                 if (hit.collider.gameObject == currentAnimalInstance)
                 {
                     isAnimalFound = true;
-                    //incorrectSelectionOverlay.SetActive(false); // Скрываем неправильный выбор
+                    //incorrectSelectionOverlay.SetActive(false); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
                     border.SetWrong(false);
 
-                    // Обновляем рамку для текущего животного
+                    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                     var animalCollider = currentAnimalInstance.GetComponent<BoxCollider>();
                     if (animalCollider != null && selectionOutline != null)
                     {
                         UpdateOutline(selectionOutline.rectTransform, animalCollider);
-                        selectionOutline.gameObject.SetActive(true); // Показываем рамку
+                        selectionOutline.gameObject.SetActive(true); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
                     }
 
 
-                    // Активируем кнопки и присваиваем ответы
+                    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
                     SetButtonsActive();
                     
                 }
                 else
                 {
-                    Debug.Log("Попали не в то животное.");
+                    Debug.Log("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.");
                     StartCoroutine(ShowIncorrectOverlay());
                 }
             }
         }
         else
         {
-            Debug.Log("Луч не нашел никаких объектов.");
+            Debug.Log("пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.");
             StartCoroutine(ShowIncorrectOverlay());
         }
     }
 
     private IEnumerator ShowIncorrectOverlay()
     {
-        //incorrectSelectionOverlay.SetActive(true); // Показываем неправильную рамку
+        //incorrectSelectionOverlay.SetActive(true); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         border.SetWrong(true);
-        yield return new WaitForSeconds(1f);       // Ждем 1 секунду
-        //incorrectSelectionOverlay.SetActive(false); // Скрываем неправильную рамку
+        yield return new WaitForSeconds(1f);       // пїЅпїЅпїЅпїЅ 1 пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        //incorrectSelectionOverlay.SetActive(false); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         border.SetWrong(false);
     }
     private void UpdateOutline(RectTransform outline, BoxCollider collider)
     {
         if (outline == null || collider == null) return;
 
-        // Центр и размеры коллайдера
+        // пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         Vector3 colliderSize = collider.size;
         Vector3 colliderCenter = collider.center;
 
-        // Смещение (задается через инспектор)
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
         Vector3 offset = new Vector3(fixOffsetX, fixOffsetY, 0);
 
-        // Преобразуем центр с учетом смещения
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         Vector3 worldCenter = collider.transform.TransformPoint(colliderCenter + offset);
         Vector3 worldSize = Vector3.Scale(colliderSize, collider.transform.lossyScale);
 
-        // Переводим в локальные координаты Canvas
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Canvas
         Vector2 canvasLocalPosition = animalContainer.transform.InverseTransformPoint(worldCenter);
 
-        // Устанавливаем размер и позицию рамки
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         outline.sizeDelta = new Vector2(worldSize.x / animalContainer.transform.lossyScale.x, worldSize.y / animalContainer.transform.lossyScale.y);
         outline.anchoredPosition = canvasLocalPosition;
     }
 
-    // Метод для загрузки нового вопроса
+    // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     private void LoadNewQuestion()
     {
-        // Выбираем текущий список доступных вопросов
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         List<AnimalQuestionConfig> currentAvailableQuestions = isEasyPhase ? availableEasyQuestions : availableHardQuestions;
 
-        // Проверяем, есть ли еще вопросы в текущем списке
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         if (currentAvailableQuestions.Count == 0)
         {
             if (isEasyPhase)
             {
-                // Переходим к сложным вопросам
+                // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                 isEasyPhase = false;
                 LoadNewQuestion();
                 return;
             }
             else
             {
-                // Завершаем игру, если закончились все вопросы
+                // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                 EndGame();
                 return;
             }
         }
 
-        // Сбрасываем флаг и деактивируем кнопки
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         isAnimalFound = false;
         selectionOutline.gameObject.SetActive(false);
-        SetButtonsInactive(); // Делаем кнопки неактивными
-        //incorrectSelectionOverlay.SetActive(false); // Скрываем неправильную рамку
+        SetButtonsInactive(); // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        //incorrectSelectionOverlay.SetActive(false); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         border.SetWrong(false);
 
-        // Выбираем случайный вопрос из доступных
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         int questionIndex = Random.Range(0, currentAvailableQuestions.Count);
         currentQuestion = currentAvailableQuestions[questionIndex];
         correctAnswer = currentQuestion.correctAnswer;
         currentAvailableQuestions.RemoveAt(questionIndex);
 
-        // Удаляем предыдущий префаб животного, если он был
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ
         if (currentAnimalInstance != null)
         {
             Destroy(currentAnimalInstance);
         }
 
-        // Спавним новый префаб животного в центре контейнера
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         Vector3 spawnPosition = containerCollider.bounds.center;
         currentAnimalInstance = Instantiate(currentQuestion.animalPrefab, spawnPosition, Quaternion.identity, animalContainer.transform);
 
         SaveSystem.setPassPool(currentAnimalInstance.name);
 
-        // Подгоняем размер префаба под контейнер
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         FitPrefabToCollider(currentAnimalInstance, containerCollider);
 
-        // Подгружаем ответы в кнопки, но не активируем их
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
         PreloadAnswers();
     }
 
-    // Метод для подгрузки ответов в кнопки без активации
+    // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     private void PreloadAnswers()
     {
         List<string> shuffledAnswers = new List<string>(currentQuestion.answerOptions);
@@ -231,7 +231,7 @@ public class AnimalQuizManager : MonoBehaviour
         }
     }
 
-    // Метод для подгонки размера префаба под размер коллайдера
+    // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     private void FitPrefabToCollider(GameObject prefab, BoxCollider2D containerCollider)
     {
         SpriteRenderer spriteRenderer = prefab.GetComponent<SpriteRenderer>();
@@ -284,15 +284,15 @@ public class AnimalQuizManager : MonoBehaviour
             string buttonAnswer = button.GetComponentInChildren<TextMeshProUGUI>().text;
             if (buttonAnswer == correctAnswer)
             {
-                controller.SetCorrect(); // Устанавливаем спрайт правильного ответа
+                controller.SetCorrect(); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             }
             else if (buttonAnswer == selectedAnswer)
             {
-                controller.SetIncorrect(); // Устанавливаем спрайт неправильного ответа
+                controller.SetIncorrect(); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             }
             else
             {
-                controller.SetInactive(); // Остальные кнопки возвращаются в неактивное состояние
+                controller.SetInactive(); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             }
         }
 
@@ -301,34 +301,34 @@ public class AnimalQuizManager : MonoBehaviour
             scoreManager.score++;
             
            
-            SaveSystem.Save(scoreManager.score); // Сохранить очки в системе сейвов
+            SaveSystem.Save(scoreManager.score); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             
-            Debug.Log("Правильный ответ!");
-            // Запускаем эффект частиц в верхней части экрана
+            Debug.Log("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ!");
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             if (correctAnswerParticles != null)
             {
                 Vector3 topOfScreen = new Vector3(0, Camera.main.orthographicSize, 0);
                 ParticleSystem particles = Instantiate(correctAnswerParticles, topOfScreen, Quaternion.identity);
-                Destroy(particles.gameObject, 1.5f); // Уничтожаем систему частиц через 1 секунду
+                Destroy(particles.gameObject, 1.5f); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 1 пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             }
         }
         else
         {
-            Debug.Log("Неправильный ответ.");
+            Debug.Log("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.");
         }
 
-        // Загружаем новый вопрос с задержкой
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         StartCoroutine(LoadNextQuestionWithDelay());
     }
 
     private IEnumerator LoadNextQuestionWithDelay()
     {
-        yield return new WaitForSeconds(1.5f); // Ждем 1.5 секунды
+        yield return new WaitForSeconds(1.5f); // пїЅпїЅпїЅпїЅ 1.5 пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         LoadNewQuestion();
     }
  
 
-    // Метод для перемешивания списка
+    // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     private void ShuffleList(List<string> list)
     {
         for (int i = list.Count - 1; i > 0; i--)
@@ -343,9 +343,10 @@ public class AnimalQuizManager : MonoBehaviour
    
    
 
-    // Метод для окончания игры
+    // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     public void EndGame()
     {
+        SaveSystem.Save(scoreManager.score);
         StopAllCoroutines();
         gameOverPanel.SetActive(true);
         scoreManager.finalScoreText.text = scoreManager.score.ToString();

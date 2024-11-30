@@ -9,8 +9,8 @@ public class FinalScoreDisplay : MonoBehaviour
 
     void Start()
     {
-        int lastSavedScore = SaveSystem.GetSave(SaveSystem.GetCount() - 1); // Получаем последний сохранённый счёт
-        Debug.Log("Загружен последний счёт: " + lastSavedScore); // Выводим в консоль
-        finalScoreText.text = lastSavedScore.ToString(); // Отобразить на UI
+        int lastSavedScore = SaveSystem.GetFirstStage(); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+        Debug.Log("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ: " + lastSavedScore); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        finalScoreText.text = lastSavedScore.ToString(); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ UI
     }
 }

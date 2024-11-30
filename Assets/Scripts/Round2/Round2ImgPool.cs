@@ -48,6 +48,7 @@ public class Round2ImgPool : MonoBehaviour
         }
         while(!(!anim.difficulty || ( anim.difficulty && CountPassFrame > CountForHard)));
         Debug.Log($"pool[{index}] obj:{anim.imgPrefabs} {borders[index].position}");
+
         Round2StateMahine.SetLittleBorder.Invoke(borders[index]);
 
         borders.RemoveAt(index);
@@ -78,7 +79,8 @@ public class Round2ImgPool : MonoBehaviour
 
     public PrefabWithAnswers GetNewFrameInfo(){
         if (_pool.Count < 2){
-            Round2StateMahine.OnPoolEmpty.Invoke();
+            SaveSystem.Save(Round2Controller.CountAnswers);
+            Round2StateMahine.EndGame.Invoke();
         }
 
         Animal Frame  = GetNewFrame();

@@ -7,8 +7,13 @@ public class TextSetter : MonoBehaviour
     void setText(string animal){
         this.GetComponent<TMPro.TMP_Text>().SetText(animal);
     }
-    void Awake()
+    void Start()
     {
         Round2StateMahine.OnSetAnimal += setText;
+    }
+
+    void OnDestroy()
+    {
+        Round2StateMahine.OnSetAnimal -= setText;
     }
 }

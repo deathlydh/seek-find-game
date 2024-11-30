@@ -20,8 +20,6 @@ public class SetBorder : MonoBehaviour
     }
 
     void SetlittleBorder(Trans rect){
-        
-        //transform.position = rect.position;
         GetComponent<RectTransform>().localPosition = rect.position;
         GetComponent<RectTransform>().offsetMax = SetSizeMax(GetComponent<RectTransform>(), rect.scale);
         GetComponent<RectTransform>().offsetMin = SetSizeMin(GetComponent<RectTransform>(), rect.scale);
@@ -30,5 +28,8 @@ public class SetBorder : MonoBehaviour
     void Awake()
     {
         Round2StateMahine.SetLittleBorder += SetlittleBorder;
+    }
+    void OnDestroy(){
+        Round2StateMahine.SetLittleBorder -= SetlittleBorder;
     }
 }

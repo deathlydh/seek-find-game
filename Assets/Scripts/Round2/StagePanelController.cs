@@ -12,8 +12,11 @@ public class StagePanelController : MonoBehaviour
     public static Action Sctiv1;
     public static Action Sctiv2;
 
+    [SerializeField]
+    private string thisStage;
+
     private void Show(){
-        gameObject.SetActive(true);
+        transform.Find(thisStage).gameObject.SetActive(true);
          if(stage == StateRound2.Stage1){
             Sctiv1.Invoke();
         }else{
@@ -21,7 +24,7 @@ public class StagePanelController : MonoBehaviour
         }
     }
     private void Hide(){
-        gameObject.SetActive(false);
+        transform.Find(thisStage).gameObject.SetActive(false);
     }
 
     void Start()
@@ -32,6 +35,16 @@ public class StagePanelController : MonoBehaviour
         }else{
             Round2StateMahine.setStage2 += Show;
             Round2StateMahine.setStage1 += Hide;
+        }
+    }
+
+    void OnDestroy(){
+        if(stage == StateRound2.Stage1){
+            Round2StateMahine.setStage1 -= Show;
+            Round2StateMahine.setStage2 -= Hide;
+        }else{
+            Round2StateMahine.setStage2 -= Show;
+            Round2StateMahine.setStage1 -= Hide;
         }
     }
 }

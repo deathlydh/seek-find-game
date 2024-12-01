@@ -60,6 +60,8 @@ public class VideoController1 : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
+        Debug.Log("Видео должно было перезапуститься");
+
         // Включаем видео
         if (videoPlayer != null)
         {

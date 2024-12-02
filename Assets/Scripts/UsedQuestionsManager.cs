@@ -32,6 +32,8 @@ public class UsedQuestionsManager : MonoBehaviour
 
     public void ResetUsedQuestions()
     {
+        Debug.Log("Сброс вопросов...");
         usedQuestions.Clear();
+        Debug.Log($"Всего вопросов после сброса: {usedQuestions.Count}");
     }
 }

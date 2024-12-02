@@ -34,36 +34,22 @@ public class Round2ImgPool : MonoBehaviour
     /// </summary>
     public AnimalQuestionConfig GetNewQuestion()
     {
-        List<AnimalQuestionConfig> currentPool;
+        List<AnimalQuestionConfig> currentPool = countPassFrame >= countForHard ? availableHardQuestions : availableEasyQuestions;
 
-        // Выбираем пул вопросов в зависимости от сложности
-        if (countPassFrame >= countForHard)
-        {
-            currentPool = availableHardQuestions;
-        }
-        else
-        {
-            currentPool = availableEasyQuestions;
-        }
-
-        // Проверяем, есть ли доступные вопросы
-        if (currentPool.Count == 0)
+        if (currentPool == null || currentPool.Count == 0)
         {
             Debug.LogWarning("Нет доступных вопросов!");
-            Round2StateMahine.EndGame.Invoke();
+            Round2StateMahine.EndGame?.Invoke(); // Добавлена проверка на null
             return null;
         }
 
-        // Пытаемся найти новый вопрос, который ещё не был использован
-        AnimalQuestionConfig selectedQuestion = null;
         for (int attempts = 0; attempts < currentPool.Count; attempts++)
         {
             int index = UnityEngine.Random.Range(0, currentPool.Count);
-            selectedQuestion = currentPool[index];
+            AnimalQuestionConfig selectedQuestion = currentPool[index];
 
             if (!UsedQuestionsManager.Instance.IsUsed(selectedQuestion))
             {
-                // Отмечаем вопрос как использованный и удаляем его из пула
                 UsedQuestionsManager.Instance.MarkAsUsed(selectedQuestion);
                 currentPool.RemoveAt(index);
                 countPassFrame++;
@@ -71,9 +57,8 @@ public class Round2ImgPool : MonoBehaviour
             }
         }
 
-        // Если все вопросы в текущем пуле уже использованы
         Debug.LogWarning("Все вопросы в текущем пуле уже использованы!");
-        Round2StateMahine.EndGame.Invoke();
+        Round2StateMahine.EndGame?.Invoke(); // Добавлена проверка на null
         return null;
     }
 
@@ -101,34 +86,21 @@ public class Round2ImgPool : MonoBehaviour
     /// <summary>
     /// Получает данные для следующего кадра.
     /// </summary>
-    public PrefabWithAnswers GetNewFrameInfo()
+    public PrefabWithAnswers? GetNewFrameInfo()
     {
-        // Проверка на конец игры
         if (availableEasyQuestions.Count + availableHardQuestions.Count == 2)
         {
             SaveSystem.Save(Round2Controller.CountAnswers);
             Round2StateMahine.EndGame.Invoke();
         }
 
-        // Получаем новый вопрос
         AnimalQuestionConfig question = GetNewQuestion();
         if (question == null)
         {
-            // Возвращаем пустой объект, если вопросов нет
-            return new PrefabWithAnswers()
-            {
-                imgPrefabs = null,
-                TrueAnswer = string.Empty,
-                OtherAnswers = new string[0],
-                AnswerIsTrue = false,
-                supAnswer = string.Empty
-            };
+            return null;
         }
 
-        // Получаем неверные ответы
         string[] falseAnswers = GetFalseAnswers(question.correctAnswer);
-
-        // Решаем, будет ли правильный ответ отображаться сразу
         bool isTrueAnswerShown = UnityEngine.Random.Range(0, 15) > 5;
 
         return new PrefabWithAnswers

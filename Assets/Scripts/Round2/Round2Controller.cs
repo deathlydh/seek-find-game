@@ -25,19 +25,40 @@ public class Round2Controller : MonoBehaviour
         }
     }
 
-    private void ChangeFrame(){
+    private void ChangeFrame()
+    {
         p.Stop();
-        if(PoolIsNotEmpty){
-            actualAnimal = GetComponent<Round2ImgPool>().GetNewFrameInfo();
+
+        if (PoolIsNotEmpty)
+        {
+            var imgPool = GetComponent<Round2ImgPool>();
+            if (imgPool == null)
+            {
+                Debug.LogError("Round2ImgPool компонент не найден!");
+                return;
+            }
+
+            // Получаем новый кадр с проверкой на null
+            var newAnimal = imgPool.GetNewFrameInfo();
+            if (!newAnimal.HasValue || newAnimal.Value.imgPrefabs == null)
+            {
+                Debug.LogWarning("Больше нет доступных вопросов или imgPrefabs равен null.");
+                PoolIsNotEmpty = false;
+                Round2StateMahine.EndGame?.Invoke();
+                return;
+            }
+
+            // Присваиваем значение actualAnimal
+            actualAnimal = newAnimal.Value;
+
             DetermineAnswers();
 
             Round2StateMahine.SetAnswers?.Invoke(answers);
             Round2StateMahine.SetImg?.Invoke(actualAnimal.imgPrefabs);
-            Round2StateMahine.OnGoodStage.Invoke(true);
+            Round2StateMahine.OnGoodStage?.Invoke(true);
 
             Round2StateMahine.OnSetAnimal?.Invoke(actualAnimal.supAnswer);
-
-            Round2StateMahine.setStage1();
+            Round2StateMahine.setStage1?.Invoke();
         }
     }
 

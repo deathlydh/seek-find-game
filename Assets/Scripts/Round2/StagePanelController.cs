@@ -13,10 +13,13 @@ public class StagePanelController : MonoBehaviour
     public static Action Sctiv2;
 
     [SerializeField]
-    private string thisStage;
+    private List<GameObject> thisStage = new List<GameObject>();
 
     private void Show(){
-        transform.Find(thisStage).gameObject.SetActive(true);
+        foreach(GameObject obj in thisStage ){
+            obj.SetActive(true);
+        }
+        
          if(stage == StateRound2.Stage1){
             Sctiv1.Invoke();
         }else{
@@ -24,10 +27,12 @@ public class StagePanelController : MonoBehaviour
         }
     }
     private void Hide(){
-        transform.Find(thisStage).gameObject.SetActive(false);
+        foreach(GameObject obj in thisStage ){
+            obj.SetActive(false);
+        }
     }
 
-    void Start()
+    void Awake()
     {
         if(stage == StateRound2.Stage1){
             Round2StateMahine.setStage1 += Show;

@@ -316,8 +316,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 146, y: -104}
-  m_SizeDelta: {x: 285.9, y: 500.09}
+  m_AnchoredPosition: {x: 158.04, y: -125.61}
+  m_SizeDelta: {x: 300, y: 550}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &172761317
 MonoBehaviour:
@@ -339,7 +339,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 285, y: 86}
+  m_CellSize: {x: 300, y: 95}
   m_Spacing: {x: 51.5, y: 52.7}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -402,8 +402,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u041A\u0430\u0431\u0430\u043D"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 33df7af98eaceb64eaaaf305f2ff2168, type: 2}
-  m_sharedMaterial: {fileID: -3986568132272898140, guid: 33df7af98eaceb64eaaaf305f2ff2168, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 98f1b54a157e0844d867c507a0393f54, type: 2}
+  m_sharedMaterial: {fileID: -9152292452342562381, guid: 98f1b54a157e0844d867c507a0393f54, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -536,8 +536,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u041E\u043B\u0435\u043D\u044C"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 33df7af98eaceb64eaaaf305f2ff2168, type: 2}
-  m_sharedMaterial: {fileID: -3986568132272898140, guid: 33df7af98eaceb64eaaaf305f2ff2168, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 98f1b54a157e0844d867c507a0393f54, type: 2}
+  m_sharedMaterial: {fileID: -9152292452342562381, guid: 98f1b54a157e0844d867c507a0393f54, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -686,8 +686,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0416\u0438\u0440\u0430\u0444"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 33df7af98eaceb64eaaaf305f2ff2168, type: 2}
-  m_sharedMaterial: {fileID: -3986568132272898140, guid: 33df7af98eaceb64eaaaf305f2ff2168, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 98f1b54a157e0844d867c507a0393f54, type: 2}
+  m_sharedMaterial: {fileID: -9152292452342562381, guid: 98f1b54a157e0844d867c507a0393f54, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -982,7 +982,7 @@ MonoBehaviour:
   incorrectSprite: {fileID: 21300000, guid: 3192e556a9c625a44874de245ca9538b, type: 3}
   buttonText: {fileID: 173125135}
   activeTextColor: {r: 1, g: 1, b: 1, a: 1}
-  inactiveTextColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  inactiveTextColor: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
   incorrectTextColor: {r: 0.5686275, g: 0.32156864, b: 0.68235296, a: 1}
 --- !u!1 &465212241
 GameObject:
@@ -1124,7 +1124,7 @@ MonoBehaviour:
   incorrectSprite: {fileID: 21300000, guid: 3192e556a9c625a44874de245ca9538b, type: 3}
   buttonText: {fileID: 280351575}
   activeTextColor: {r: 1, g: 1, b: 1, a: 1}
-  inactiveTextColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  inactiveTextColor: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
   incorrectTextColor: {r: 0.5686275, g: 0.32156864, b: 0.68235296, a: 1}
 --- !u!1 &470960211
 GameObject:
@@ -6013,8 +6013,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u041A\u043E\u0441\u0443\u043B\u044F"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 33df7af98eaceb64eaaaf305f2ff2168, type: 2}
-  m_sharedMaterial: {fileID: -3986568132272898140, guid: 33df7af98eaceb64eaaaf305f2ff2168, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 98f1b54a157e0844d867c507a0393f54, type: 2}
+  m_sharedMaterial: {fileID: -9152292452342562381, guid: 98f1b54a157e0844d867c507a0393f54, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6128,15 +6128,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 20
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9bcf91a3d9a61e84d945ffeebb1e9792, type: 2}
-  m_sharedMaterial: {fileID: 6521080093293984914, guid: 9bcf91a3d9a61e84d945ffeebb1e9792, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5b27429118eefed4c88afd06505c1dc6, type: 2}
+  m_sharedMaterial: {fileID: 7180021210280551988, guid: 5b27429118eefed4c88afd06505c1dc6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294891008
-  m_fontColor: {r: 0, g: 0.8392157, b: 0.9960785, a: 1}
+    rgba: 4294947072
+  m_fontColor: {r: 0, g: 0.69411767, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6159,7 +6159,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -6329,7 +6329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6674,14 +6674,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5473328a89a643f46aea1f1f595fe457, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6907,7 +6907,7 @@ MonoBehaviour:
   incorrectSprite: {fileID: 21300000, guid: 3192e556a9c625a44874de245ca9538b, type: 3}
   buttonText: {fileID: 471627759}
   activeTextColor: {r: 1, g: 1, b: 1, a: 1}
-  inactiveTextColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  inactiveTextColor: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
   incorrectTextColor: {r: 0.5686275, g: 0.32156864, b: 0.68235296, a: 1}
 --- !u!1 &920559574
 GameObject:
@@ -7486,7 +7486,7 @@ MonoBehaviour:
   incorrectSprite: {fileID: 21300000, guid: 3192e556a9c625a44874de245ca9538b, type: 3}
   buttonText: {fileID: 173082176}
   activeTextColor: {r: 1, g: 1, b: 1, a: 1}
-  inactiveTextColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  inactiveTextColor: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
   incorrectTextColor: {r: 0.5686275, g: 0.32156864, b: 0.68235296, a: 1}
 --- !u!1 &1085260646
 GameObject:
@@ -8033,7 +8033,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 1976685350}
   timerCircle: {fileID: 0}
-  timeLimit: 30
+  timeLimit: 45
   animalQuizManager: {fileID: 1346996996}
 --- !u!114 &1346996998
 MonoBehaviour:
@@ -9201,7 +9201,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6609757793600665426, guid: c8c2e86968a78744bb1a82c43b5e8612, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -259
+      value: -300
       objectReference: {fileID: 0}
     - target: {fileID: 6609757793600665426, guid: c8c2e86968a78744bb1a82c43b5e8612, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

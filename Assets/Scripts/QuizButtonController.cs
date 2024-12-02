@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,11 @@ public class QuizButtonController : MonoBehaviour
     public Sprite activeSprite;    // —прайт дл€ активного состо€ни€
     public Sprite correctSprite;   // —прайт дл€ правильного ответа
     public Sprite incorrectSprite; // —прайт дл€ неправильного ответа
+
+    public TMP_Text buttonText;    // —сылка на TextMeshPro дл€ текста кнопки
+    public Color activeTextColor = Color.white; // ÷вет текста в активном состо€нии
+    public Color inactiveTextColor = Color.gray; // ÷вет текста в неактивном состо€нии
+    public Color incorrectTextColor = new Color32(145, 82, 174, 255); // ÷вет текста дл€ состо€ни€ "Incorrect"
 
     private Image buttonImage;     // —сылка на компонент Image кнопки
 
@@ -22,21 +28,41 @@ public class QuizButtonController : MonoBehaviour
     {
         buttonImage.sprite = inactiveSprite;
         GetComponent<Button>().interactable = false;
+
+        if (buttonText != null)
+        {
+            buttonText.color = inactiveTextColor;
+        }
     }
 
     public void SetActive()
     {
         buttonImage.sprite = activeSprite;
         GetComponent<Button>().interactable = true;
+
+        if (buttonText != null)
+        {
+            buttonText.color = activeTextColor;
+        }
     }
 
     public void SetCorrect()
     {
         buttonImage.sprite = correctSprite;
+
+        if (buttonText != null)
+        {
+            buttonText.color = activeTextColor; // ÷вет текста дл€ правильного ответа
+        }
     }
 
     public void SetIncorrect()
     {
         buttonImage.sprite = incorrectSprite;
+
+        if (buttonText != null)
+        {
+            buttonText.color = incorrectTextColor; // ÷вет текста дл€ неправильного ответа
+        }
     }
 }

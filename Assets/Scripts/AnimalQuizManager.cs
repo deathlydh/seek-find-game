@@ -29,7 +29,7 @@ public class AnimalQuizManager : MonoBehaviour
     private string correctAnswer;
     private bool isAnimalFound = false;
     private bool isQuizStarted = false;
-
+    private bool isAnswerSelected = false;
 
     private BoxCollider2D containerCollider;
 
@@ -163,56 +163,79 @@ public class AnimalQuizManager : MonoBehaviour
     // ����� ��� �������� ������ �������
     private void LoadNewQuestion()
     {
-        // �������� ������� ������ ��������� ��������
+        // Определяем текущий список доступных вопросов
         List<AnimalQuestionConfig> currentAvailableQuestions = isEasyPhase ? availableEasyQuestions : availableHardQuestions;
 
-        // ���������, ���� �� ��� ������� � ������� ������
+        // Проверяем, есть ли еще доступные вопросы
         if (currentAvailableQuestions.Count == 0)
         {
             if (isEasyPhase)
             {
-                // ��������� � ������� ��������
+                // Если закончились вопросы для легкой фазы, переключаемся на сложные
                 isEasyPhase = false;
                 LoadNewQuestion();
                 return;
             }
             else
             {
-                // ��������� ����, ���� ����������� ��� �������
+                // Если вопросы закончились полностью, завершить игру
                 EndGame();
                 return;
             }
         }
 
-        // ���������� ���� � ������������ ������
+        // Флаг, указывающий, нашли ли мы еще неиспользованный вопрос
+        bool foundUnusedQuestion = false;
+        int questionIndex = 0;
+
+        // Попытка найти вопрос, который еще не был использован
+        for (int i = 0; i < currentAvailableQuestions.Count; i++)
+        {
+            questionIndex = Random.Range(0, currentAvailableQuestions.Count);
+            AnimalQuestionConfig potentialQuestion = currentAvailableQuestions[questionIndex];
+
+            if (!UsedQuestionsManager.Instance.IsUsed(potentialQuestion))
+            {
+                currentQuestion = potentialQuestion;
+                UsedQuestionsManager.Instance.MarkAsUsed(currentQuestion); // Отмечаем вопрос как использованный
+                currentAvailableQuestions.RemoveAt(questionIndex);
+                foundUnusedQuestion = true;
+                break;
+            }
+        }
+
+        if (!foundUnusedQuestion)
+        {
+            // Если не найден ни один новый вопрос, рекурсивно вызываем метод снова
+            EndGame();
+            return;
+        }
+
+        // Сбрасываем состояние для нового вопроса
         isAnimalFound = false;
         selectionOutline.gameObject.SetActive(false);
-        SetButtonsInactive(); // ������ ������ �����������
-        //incorrectSelectionOverlay.SetActive(false); // �������� ������������ �����
+        SetButtonsInactive();
         border.SetWrong(false);
 
-        // �������� ��������� ������ �� ���������
-        int questionIndex = Random.Range(0, currentAvailableQuestions.Count);
-        currentQuestion = currentAvailableQuestions[questionIndex];
+        // Устанавливаем правильный ответ
         correctAnswer = currentQuestion.correctAnswer;
-        currentAvailableQuestions.RemoveAt(questionIndex);
 
-        // ������� ���������� ������ ���������, ���� �� ���
+        // Удаляем предыдущий экземпляр животного, если он есть
         if (currentAnimalInstance != null)
         {
             Destroy(currentAnimalInstance);
         }
 
-        // ������� ����� ������ ��������� � ������ ����������
+        // Создаем новый экземпляр животного
         Vector3 spawnPosition = containerCollider.bounds.center;
         currentAnimalInstance = Instantiate(currentQuestion.animalPrefab, spawnPosition, Quaternion.identity, animalContainer.transform);
 
         SaveSystem.setPassPool(currentAnimalInstance.name);
 
-        // ��������� ������ ������� ��� ���������
+        // Подгоняем размер животного под контейнер
         FitPrefabToCollider(currentAnimalInstance, containerCollider);
 
-        // ���������� ������ � ������, �� �� ���������� ��
+        // Предзагружаем ответы для текущего вопроса
         PreloadAnswers();
     }
 
@@ -276,6 +299,9 @@ public class AnimalQuizManager : MonoBehaviour
 
     private void OnAnswerSelected(string selectedAnswer)
     {
+        if (isAnswerSelected) return; // Если уже выбран ответ, игнорируем нажатие
+        isAnswerSelected = true; // Устанавливаем флаг
+
         foreach (Button button in answerButtons)
         {
             var controller = button.GetComponent<QuizButtonController>();
@@ -284,49 +310,46 @@ public class AnimalQuizManager : MonoBehaviour
             string buttonAnswer = button.GetComponentInChildren<TextMeshProUGUI>().text;
             if (buttonAnswer == correctAnswer)
             {
-                controller.SetCorrect(); // ������������� ������ ����������� ������
+                controller.SetCorrect(); // Обновляем стиль кнопки как правильной
             }
             else if (buttonAnswer == selectedAnswer)
             {
-                controller.SetIncorrect(); // ������������� ������ ������������� ������
+                controller.SetIncorrect(); // Обновляем стиль кнопки как неправильной
             }
             else
             {
-                controller.SetInactive(); // ��������� ������ ������������ � ���������� ���������
+                controller.SetInactive(); // Деактивируем остальные кнопки
             }
         }
 
         if (selectedAnswer == correctAnswer)
         {
             scoreManager.score++;
-            
-           
-            SaveSystem.Save(scoreManager.score); // ��������� ���� � ������� ������
-            
-            Debug.Log("���������� �����!");
-            // ��������� ������ ������ � ������� ����� ������
+            SaveSystem.Save(scoreManager.score);
+            Debug.Log("Правильный ответ!");
             if (correctAnswerParticles != null)
             {
                 Vector3 topOfScreen = new Vector3(0, Camera.main.orthographicSize, 0);
                 ParticleSystem particles = Instantiate(correctAnswerParticles, topOfScreen, Quaternion.identity);
-                Destroy(particles.gameObject, 1.5f); // ���������� ������� ������ ����� 1 �������
+                Destroy(particles.gameObject, 1.5f);
             }
         }
         else
         {
-            Debug.Log("������������ �����.");
+            Debug.Log("Неправильный ответ.");
         }
 
-        // ��������� ����� ������ � ���������
+        // Загружаем следующий вопрос с задержкой
         StartCoroutine(LoadNextQuestionWithDelay());
     }
 
     private IEnumerator LoadNextQuestionWithDelay()
     {
-        yield return new WaitForSeconds(1.5f); // ���� 1.5 �������
-        LoadNewQuestion();
+        yield return new WaitForSeconds(1.5f); // Ждем 1.5 секунды
+        isAnswerSelected = false; // Сбрасываем флаг
+        LoadNewQuestion(); // Загружаем новый вопрос
     }
- 
+
 
     // ����� ��� ������������� ������
     private void ShuffleList(List<string> list)

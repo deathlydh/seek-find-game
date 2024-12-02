@@ -642,6 +642,7 @@ GameObject:
   - component: {fileID: 1692649695}
   - component: {fileID: 1692649694}
   - component: {fileID: 1692649699}
+  - component: {fileID: 1692649700}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -761,6 +762,62 @@ MonoBehaviour:
   videoPlayer: {fileID: 546248232}
   uiPanel: {fileID: 561330824}
   videoFileName: Sbervideo.mp4
+--- !u!114 &1692649700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692649693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 791a057c2b64eda47af4bc29a9d73df0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1887838942
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1887838944}
+  - component: {fileID: 1887838943}
+  m_Layer: 0
+  m_Name: UsedQuestionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1887838943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887838942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 300bffd68043e5d4ba51468f5606b311, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1887838944
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887838942}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.7898644, y: -0.90589017, z: 166.41272}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -769,3 +826,4 @@ SceneRoots:
   - {fileID: 1692649698}
   - {fileID: 1011657859}
   - {fileID: 546248233}
+  - {fileID: 1887838944}

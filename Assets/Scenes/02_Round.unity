@@ -7847,72 +7847,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03897ccd5555cc4da34f0187557c1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pool:
-  - imgPrefabs: {fileID: 2156715974566502584, guid: e247718effc716246a8450433a09e3a2, type: 3}
-    TrueAnswer: "\u041E\u043B\u0435\u043D\u044C"
-    difficulty: 1
-  - imgPrefabs: {fileID: 6742216158348567645, guid: 73543a116050d0545925bf25f872b016, type: 3}
-    TrueAnswer: "\u041E\u043B\u0435\u043D\u044C"
-    difficulty: 0
-  - imgPrefabs: {fileID: 3131452642472146900, guid: d4e699c8f30c35147b623e2bb9bd61ab, type: 3}
-    TrueAnswer: "\u041E\u043B\u0435\u043D\u044C"
-    difficulty: 0
-  - imgPrefabs: {fileID: 3650270483164574424, guid: 443c5fa479085b34dbd94f9da5e7412e, type: 3}
-    TrueAnswer: "\u0412\u043E\u043B\u043A"
-    difficulty: 0
-  - imgPrefabs: {fileID: 8171973131600231342, guid: 296320a37ba213048b18b06b69c2d99d, type: 3}
-    TrueAnswer: "\u041C\u0435\u0434\u0432\u0435\u0434\u044C"
-    difficulty: 0
-  - imgPrefabs: {fileID: 681628129662953455, guid: f6a9f6ee2c0927d47b550dd2b6f60d22, type: 3}
-    TrueAnswer: "\u0412\u043E\u043B\u043A"
-    difficulty: 1
-  - imgPrefabs: {fileID: 202762058008126694, guid: c3b642bd2aae9df4596734791ef70e86, type: 3}
-    TrueAnswer: "\u0412\u043E\u043B\u043A"
-    difficulty: 1
-  - imgPrefabs: {fileID: 7630343423752998890, guid: c5e5e87ef56df404e830365125b534c7, type: 3}
-    TrueAnswer: "\u041E\u043B\u0435\u043D\u044C"
-    difficulty: 0
-  - imgPrefabs: {fileID: 4326968880180928149, guid: 05334fd951c94624db02a6819081a67a, type: 3}
-    TrueAnswer: "\u0412\u043E\u043B\u043A"
-    difficulty: 0
-  - imgPrefabs: {fileID: 3749543475262650689, guid: 27a6819fad7b47246993ebb0390c72dc, type: 3}
-    TrueAnswer: "\u041E\u043B\u0435\u043D\u044C"
-    difficulty: 1
-  - imgPrefabs: {fileID: 2577433444733163832, guid: c5daa715b1429d44d8eb3914c582cdac, type: 3}
-    TrueAnswer: "\u041B\u0438\u0441\u0430"
-    difficulty: 0
-  Answers:
-  - "\u041A\u043E\u043D\u044C"
-  - "\u041C\u0430\u043D\u0443\u043B"
-  - "\u0415\u043D\u043E\u0442\u043E\u0432\u0438\u0434\u043D\u0430\u044F \u0441\u043E\u0431\u0430\u043A\u0430"
-  - "\u041B\u0438\u0441\u0430"
-  - "\u041C\u0435\u0434\u0432\u0435\u0434\u044C"
-  - "\u0417\u0430\u044F\u0446"
-  - "\u041A\u0440\u043E\u043B\u0438\u043A"
-  borders:
-  - position: {x: -106, y: -3.65, z: 0}
-    scale: {x: 574, y: 515}
-  - position: {x: -356, y: 42, z: 0}
-    scale: {x: 573.97, y: 316.6}
-  - position: {x: 194, y: -124, z: 0}
-    scale: {x: 123, y: 222}
-  - position: {x: -565.78, y: -323.39, z: 0}
-    scale: {x: 160, y: 143}
-  - position: {x: -746, y: -284.14, z: 0}
-    scale: {x: 200, y: 222}
-  - position: {x: -383, y: 134, z: 0}
-    scale: {x: 200, y: 222}
-  - position: {x: -0.000061035, y: -265, z: 0}
-    scale: {x: 200, y: 222}
-  - position: {x: -667, y: -168, z: 0}
-    scale: {x: 350, y: 143}
-  - position: {x: -487.1, y: -299.9, z: 0}
-    scale: {x: 210, y: 115}
-  - position: {x: 93.8, y: 93.5, z: 0}
-    scale: {x: 210, y: 220}
-  - position: {x: -180, y: -198, z: 0}
-    scale: {x: 210, y: 220}
-  CountForHard: 3
+  easyQuestions:
+  - {fileID: 11400000, guid: dd59ef91f83bec74a9f9fde61fd06f15, type: 2}
+  - {fileID: 11400000, guid: 83b68741d80b9a44591ba4ebc1cba421, type: 2}
+  - {fileID: 11400000, guid: add96441777307d4fa7faf8a90eae188, type: 2}
+  - {fileID: 11400000, guid: e7f6aa3f2ef43664894a34c0d944b3c2, type: 2}
+  - {fileID: 11400000, guid: 6e38feb43fd0cb64ab630ff7faa8d157, type: 2}
+  - {fileID: 11400000, guid: 615261a959ab4d346baeb411c16cb961, type: 2}
+  - {fileID: 11400000, guid: 24c79237c2fae1842ab52e715375ae2f, type: 2}
+  - {fileID: 11400000, guid: 368b5a57cac587f4ea63c0cf14e6c8b8, type: 2}
+  - {fileID: 11400000, guid: 15d3bb7981ca2084284cc9ac2d421481, type: 2}
+  - {fileID: 11400000, guid: 6f073e780be38ed47a098205b8bc8394, type: 2}
+  - {fileID: 11400000, guid: b8663d4ef9dbadc4682d75e157df0232, type: 2}
+  - {fileID: 11400000, guid: 40cf43305213f1b4fa0d5b0f4b3a925b, type: 2}
+  - {fileID: 11400000, guid: 2248e186794563f46937441f5f175e42, type: 2}
+  - {fileID: 11400000, guid: 007541faf68c13e4c9c21b890ca657d5, type: 2}
+  - {fileID: 11400000, guid: 976a88a4755120641b60a17b77b50111, type: 2}
+  - {fileID: 11400000, guid: a4e9fa5659b37a540a922d638b36ec93, type: 2}
+  - {fileID: 11400000, guid: 9be1d7791cabd6446875e0413009f9c2, type: 2}
+  - {fileID: 11400000, guid: 12660765362998e49a04bb3a8d6d8b02, type: 2}
+  - {fileID: 11400000, guid: e9141f776fa7e8b448a1990f34aca43d, type: 2}
+  - {fileID: 11400000, guid: cad011613d4374d4b8a8cff60692e0b0, type: 2}
+  - {fileID: 11400000, guid: 569235d62a4b96d41b4e1820739eede4, type: 2}
+  - {fileID: 11400000, guid: 528c9b0e1cf19cb46b64b407db0c4221, type: 2}
+  - {fileID: 11400000, guid: 075b8f10d4c8d3c4ca39216024f66e3e, type: 2}
+  - {fileID: 11400000, guid: c53106c6c5f7aae4c8e955b2b8523f05, type: 2}
+  - {fileID: 11400000, guid: f49bce3e317327f478f284b5413962a1, type: 2}
+  - {fileID: 11400000, guid: 554cf611db890af40815f06072e51db0, type: 2}
+  - {fileID: 11400000, guid: 6a2c1caf2dd4eba48a07918751ff1623, type: 2}
+  - {fileID: 11400000, guid: 78fde0ad7fde87d40958b23e23808dcc, type: 2}
+  hardQuestions:
+  - {fileID: 11400000, guid: 41f685f71ab81a14bac2d2048525a680, type: 2}
+  - {fileID: 11400000, guid: 9f9e024a8ab767b428b90d2c626dfad5, type: 2}
+  - {fileID: 11400000, guid: d6d360614c60283469e0215d9975687c, type: 2}
+  - {fileID: 11400000, guid: 7dc95b97548ae9e46b9fa164623fe7c2, type: 2}
+  - {fileID: 11400000, guid: 7570a65cec8af7d43948caaf4c833704, type: 2}
+  - {fileID: 11400000, guid: 0f819ff7f778c97459bc956ed3d54e70, type: 2}
+  - {fileID: 11400000, guid: fe744cd41543f4647b7d82d3892643bd, type: 2}
+  - {fileID: 11400000, guid: 3c3ba869f55ace140bba22b18ffa9108, type: 2}
+  - {fileID: 11400000, guid: f20f95718fedb844fa17dc242f0b1a78, type: 2}
+  - {fileID: 11400000, guid: ca85d839dea829445aa1208bfe3b3246, type: 2}
+  - {fileID: 11400000, guid: ce7bf6bc74462144b8a87aab15a28200, type: 2}
+  - {fileID: 11400000, guid: 66e3b72c2ddeaff4e9abb3d16782bb14, type: 2}
+  - {fileID: 11400000, guid: 84d9a67f8d160e048bb041a0c2a2a3ae, type: 2}
+  - {fileID: 11400000, guid: b2c5733b906f43549b567c2fbf089669, type: 2}
+  - {fileID: 11400000, guid: 386896fe242b4c8429fc93d304a2ed1b, type: 2}
+  - {fileID: 11400000, guid: 5d174d46ad98a614897fed7349979d69, type: 2}
+  - {fileID: 11400000, guid: 201ab21c26b8c574ea4180ef82cf9e93, type: 2}
+  borders: []
+  countForHard: 28
 --- !u!114 &882864470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11218,6 +11201,22 @@ PrefabInstance:
     - target: {fileID: 6609757793600665426, guid: c8c2e86968a78744bb1a82c43b5e8612, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8062835561784064753, guid: c8c2e86968a78744bb1a82c43b5e8612, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.103773594
+      objectReference: {fileID: 0}
+    - target: {fileID: 8062835561784064753, guid: c8c2e86968a78744bb1a82c43b5e8612, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.08384401
+      objectReference: {fileID: 0}
+    - target: {fileID: 8062835561784064753, guid: c8c2e86968a78744bb1a82c43b5e8612, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.057271276
+      objectReference: {fileID: 0}
+    - target: {fileID: 8062835561784064753, guid: c8c2e86968a78744bb1a82c43b5e8612, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4279899407
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -980,6 +980,10 @@ MonoBehaviour:
   activeSprite: {fileID: 21300000, guid: 1bdf66f0165a75e42a88eb154abf7762, type: 3}
   correctSprite: {fileID: 21300000, guid: 71687ed819e4b3544861aee55023f1b5, type: 3}
   incorrectSprite: {fileID: 21300000, guid: 3192e556a9c625a44874de245ca9538b, type: 3}
+  buttonText: {fileID: 173125135}
+  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
+  inactiveTextColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  incorrectTextColor: {r: 0.5686275, g: 0.32156864, b: 0.68235296, a: 1}
 --- !u!1 &465212241
 GameObject:
   m_ObjectHideFlags: 0
@@ -1118,6 +1122,10 @@ MonoBehaviour:
   activeSprite: {fileID: 21300000, guid: 1bdf66f0165a75e42a88eb154abf7762, type: 3}
   correctSprite: {fileID: 21300000, guid: 71687ed819e4b3544861aee55023f1b5, type: 3}
   incorrectSprite: {fileID: 21300000, guid: 3192e556a9c625a44874de245ca9538b, type: 3}
+  buttonText: {fileID: 280351575}
+  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
+  inactiveTextColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  incorrectTextColor: {r: 0.5686275, g: 0.32156864, b: 0.68235296, a: 1}
 --- !u!1 &470960211
 GameObject:
   m_ObjectHideFlags: 0
@@ -6249,7 +6257,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -24, y: 14.95697}
+  m_AnchoredPosition: {x: -24, y: 14.957031}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &657360280
@@ -6594,7 +6602,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -24, y: 14.95697}
+  m_AnchoredPosition: {x: -24, y: 14.957031}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &856107303
@@ -6897,6 +6905,10 @@ MonoBehaviour:
   activeSprite: {fileID: 21300000, guid: 1bdf66f0165a75e42a88eb154abf7762, type: 3}
   correctSprite: {fileID: 21300000, guid: 71687ed819e4b3544861aee55023f1b5, type: 3}
   incorrectSprite: {fileID: 21300000, guid: 3192e556a9c625a44874de245ca9538b, type: 3}
+  buttonText: {fileID: 471627759}
+  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
+  inactiveTextColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  incorrectTextColor: {r: 0.5686275, g: 0.32156864, b: 0.68235296, a: 1}
 --- !u!1 &920559574
 GameObject:
   m_ObjectHideFlags: 0
@@ -7472,6 +7484,10 @@ MonoBehaviour:
   activeSprite: {fileID: 21300000, guid: 1bdf66f0165a75e42a88eb154abf7762, type: 3}
   correctSprite: {fileID: 21300000, guid: 71687ed819e4b3544861aee55023f1b5, type: 3}
   incorrectSprite: {fileID: 21300000, guid: 3192e556a9c625a44874de245ca9538b, type: 3}
+  buttonText: {fileID: 173082176}
+  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
+  inactiveTextColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  incorrectTextColor: {r: 0.5686275, g: 0.32156864, b: 0.68235296, a: 1}
 --- !u!1 &1085260646
 GameObject:
   m_ObjectHideFlags: 0

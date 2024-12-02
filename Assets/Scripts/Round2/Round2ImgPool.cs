@@ -8,108 +8,81 @@ using UnityEngine;
 public class Round2ImgPool : MonoBehaviour
 {
     [SerializeField]
-    private AnimalQuestionConfig[] easyQuestions; // Лёгкие вопросы
+    private AnimalQuestionConfig[] easyQuestions;
+
     [SerializeField]
-    private AnimalQuestionConfig[] hardQuestions; // Сложные вопросы
+    private AnimalQuestionConfig[] hardQuestions;
 
     private List<AnimalQuestionConfig> availableEasyQuestions;
     private List<AnimalQuestionConfig> availableHardQuestions;
 
     [SerializeField]
-    private List<Transform> borders = new List<Transform>(); // Границы для спавна животных
+    private int countForHard;
 
-    [SerializeField]
-    private int countForHard; // Количество проходов до сложных вопросов
-    private int countPassFrame = 0;
+    private int countPassFrame;
 
-    void Start()
+    private void Start()
     {
-        // Создаём копии массивов вопросов для работы
         availableEasyQuestions = new List<AnimalQuestionConfig>(easyQuestions);
         availableHardQuestions = new List<AnimalQuestionConfig>(hardQuestions);
     }
 
-    /// <summary>
-    /// Получает новый вопрос с учётом сложности и проверяет, использовался ли он.
-    /// </summary>
     public AnimalQuestionConfig GetNewQuestion()
     {
-        List<AnimalQuestionConfig> currentPool = countPassFrame >= countForHard ? availableHardQuestions : availableEasyQuestions;
+        var currentPool = countPassFrame >= countForHard ? availableHardQuestions : availableEasyQuestions;
 
         if (currentPool == null || currentPool.Count == 0)
         {
             Debug.LogWarning("Нет доступных вопросов!");
-            Round2StateMahine.EndGame?.Invoke(); // Добавлена проверка на null
+            Round2StateMahine.EndGame?.Invoke();
             return null;
         }
 
-        for (int attempts = 0; attempts < currentPool.Count; attempts++)
-        {
-            int index = UnityEngine.Random.Range(0, currentPool.Count);
-            AnimalQuestionConfig selectedQuestion = currentPool[index];
+        var unusedQuestions = currentPool.Where(q => !UsedQuestionsManager.Instance.IsUsed(q)).ToList();
 
-            if (!UsedQuestionsManager.Instance.IsUsed(selectedQuestion))
-            {
-                UsedQuestionsManager.Instance.MarkAsUsed(selectedQuestion);
-                currentPool.RemoveAt(index);
-                countPassFrame++;
-                return selectedQuestion;
-            }
+        if (unusedQuestions.Count == 0)
+        {
+            Debug.LogWarning("Все вопросы в текущем пуле уже использованы!");
+            Round2StateMahine.EndGame?.Invoke();
+            return null;
         }
 
-        Debug.LogWarning("Все вопросы в текущем пуле уже использованы!");
-        Round2StateMahine.EndGame?.Invoke(); // Добавлена проверка на null
-        return null;
+        var selectedQuestion = unusedQuestions[UnityEngine.Random.Range(0, unusedQuestions.Count)];
+        UsedQuestionsManager.Instance.MarkAsUsed(selectedQuestion);
+        currentPool.Remove(selectedQuestion);
+        countPassFrame++;
+
+        return selectedQuestion;
     }
 
-    /// <summary>
-    /// Получает три неверных ответа.
-    /// </summary>
     public string[] GetFalseAnswers(string correctAnswer)
     {
-        List<string> allAnswers = new List<string>();
-
-        // Собираем все возможные ответы из всех вопросов
-        allAnswers.AddRange(easyQuestions.SelectMany(q => q.answerOptions));
-        allAnswers.AddRange(hardQuestions.SelectMany(q => q.answerOptions));
-
-        // Убираем правильный ответ
-        allAnswers.RemoveAll(a => a == correctAnswer);
-
-        // Выбираем три случайных ответа
-        return allAnswers
+        var allAnswers = easyQuestions.SelectMany(q => q.answerOptions)
+            .Concat(hardQuestions.SelectMany(q => q.answerOptions))
+            .Where(a => a != correctAnswer)
+            .Distinct()
             .OrderBy(_ => UnityEngine.Random.value)
             .Take(3)
             .ToArray();
+
+        return allAnswers;
     }
 
-    /// <summary>
-    /// Получает данные для следующего кадра.
-    /// </summary>
     public PrefabWithAnswers? GetNewFrameInfo()
     {
-        if (availableEasyQuestions.Count + availableHardQuestions.Count == 2)
-        {
-            SaveSystem.Save(Round2Controller.CountAnswers);
-            Round2StateMahine.EndGame.Invoke();
-        }
+        var question = GetNewQuestion();
+        if (question == null) return null;
 
-        AnimalQuestionConfig question = GetNewQuestion();
-        if (question == null)
-        {
-            return null;
-        }
+        var falseAnswers = GetFalseAnswers(question.correctAnswer);
 
-        string[] falseAnswers = GetFalseAnswers(question.correctAnswer);
-        bool isTrueAnswerShown = UnityEngine.Random.Range(0, 15) > 5;
-
+        bool _answerIsTrue = UnityEngine.Random.value > 0.2f;
         return new PrefabWithAnswers
         {
             imgPrefabs = question.animalPrefab,
             TrueAnswer = question.correctAnswer,
             OtherAnswers = falseAnswers,
-            AnswerIsTrue = isTrueAnswerShown,
-            supAnswer = isTrueAnswerShown ? question.correctAnswer : falseAnswers[0]
+            AnswerIsTrue = _answerIsTrue,
+            supAnswer = _answerIsTrue ? question.correctAnswer : falseAnswers[0]
         };
     }
 }

@@ -4,131 +4,148 @@ using UnityEngine;
 
 public class Round2Controller : MonoBehaviour
 {
-    private PrefabWithAnswers actualAnimal;
-    private int TrueAnswerIndex;
+    private PrefabWithAnswers? actualAnimal;
+    private int trueAnswerIndex;
     private string[] answers = new string[4];
-    private bool PoolIsNotEmpty = true;
+    private bool poolIsNotEmpty = true;
     public static int CountAnswers = 0;
-    [SerializeField]
-    public ParticleSystem p;
-    
-    private void DetermineAnswers(){
-        TrueAnswerIndex = UnityEngine.Random.Range(0, answers.Length);
 
-        for(int i = 0; i < answers.Length; i++)
+    [SerializeField]
+    private ParticleSystem particleSystem;
+
+    private void DetermineAnswers()
+    {
+        if (actualAnimal == null) return;
+
+        trueAnswerIndex = Random.Range(0, answers.Length);
+
+        for (int i = 0; i < answers.Length; i++)
         {
-            if(TrueAnswerIndex == i){
-                answers[i] = actualAnimal.TrueAnswer;
-            }else{
-                answers[i] = actualAnimal.OtherAnswers[i < TrueAnswerIndex ? i : i - 1];
-            }
+            answers[i] = i == trueAnswerIndex
+                ? actualAnimal.Value.TrueAnswer
+                : actualAnimal.Value.OtherAnswers[i < trueAnswerIndex ? i : i - 1];
         }
     }
 
     private void ChangeFrame()
     {
-        p.Stop();
+        if (particleSystem.isPlaying)
+            particleSystem.Stop();
 
-        if (PoolIsNotEmpty)
+        if (!poolIsNotEmpty) return;
+
+        var imgPool = GetComponent<Round2ImgPool>();
+        if (imgPool == null)
         {
-            var imgPool = GetComponent<Round2ImgPool>();
-            if (imgPool == null)
-            {
-                Debug.LogError("Round2ImgPool компонент не найден!");
-                return;
-            }
-
-            // Получаем новый кадр с проверкой на null
-            var newAnimal = imgPool.GetNewFrameInfo();
-            if (!newAnimal.HasValue || newAnimal.Value.imgPrefabs == null)
-            {
-                Debug.LogWarning("Больше нет доступных вопросов или imgPrefabs равен null.");
-                PoolIsNotEmpty = false;
-                Round2StateMahine.EndGame?.Invoke();
-                return;
-            }
-
-            // Присваиваем значение actualAnimal
-            actualAnimal = newAnimal.Value;
-
-            DetermineAnswers();
-
-            Round2StateMahine.SetAnswers?.Invoke(answers);
-            Round2StateMahine.SetImg?.Invoke(actualAnimal.imgPrefabs);
-            Round2StateMahine.OnGoodStage?.Invoke(true);
-
-            Round2StateMahine.OnSetAnimal?.Invoke(actualAnimal.supAnswer);
-            Round2StateMahine.setStage1?.Invoke();
+            Debug.LogError("Round2ImgPool компонент не найден!");
+            return;
         }
+
+        var newAnimal = imgPool.GetNewFrameInfo();
+        if (newAnimal == null)
+        {
+            Debug.LogWarning("Больше нет доступных вопросов.");
+            poolIsNotEmpty = false;
+            Round2StateMahine.EndGame?.Invoke();
+            return;
+        }
+
+        actualAnimal = newAnimal.Value;
+        DetermineAnswers();
+
+        // Отправляем события
+        Round2StateMahine.SetAnswers?.Invoke(answers);
+        Round2StateMahine.SetImg?.Invoke(actualAnimal.Value.imgPrefabs);
+        Round2StateMahine.OnGoodStage?.Invoke(true);
+        Round2StateMahine.OnSetAnimal?.Invoke(actualAnimal.Value.supAnswer);
+        Round2StateMahine.setStage1?.Invoke();
     }
 
-    private void WrongAnswer(){
-        Round2StateMahine.OnWrongStage.Invoke(actualAnimal.AnswerIsTrue);
-    }
+    public void OnStage1Click(bool answer)
+    {
+        if (actualAnimal == null) return;
 
-    private void WrongAnswer(int _ind){
-        Round2StateMahine.OnWrongStage2.Invoke(_ind, TrueAnswerIndex);
-    }
-
-    private void GoodAnswer(bool answer){
-        Round2StateMahine.OnGoodStage.Invoke(answer);
-        Round2StateMahine.OnGoodStage2.Invoke(TrueAnswerIndex);
-    }
-
-    private void SetStage2(){
-        Round2StateMahine.setStage2();
-    }
-
-    public void OnStage1Click(bool _answer){
-        if(_answer == actualAnimal.AnswerIsTrue){
-            Debug.Log($"CountAnswers {CountAnswers}");
-            if(actualAnimal.AnswerIsTrue){
-                p.Play();
-                GoodAnswer(actualAnimal.AnswerIsTrue);
+        if (answer == actualAnimal.Value.AnswerIsTrue)
+        {
+            if (actualAnimal.Value.AnswerIsTrue)
+            {
+                particleSystem.Play();
+                GoodAnswer(true);
                 CountAnswers++;
-                Invoke("ChangeFrame", 1.5f);
-            }else{
-                GoodAnswer(actualAnimal.AnswerIsTrue);
-                Invoke("SetStage2", 1.5f);
+                Invoke(nameof(ChangeFrame), 1.5f);
             }
-            
-        }else{
+            else
+            {
+                GoodAnswer(false);
+                Invoke(nameof(SetStage2), 1.5f);
+            }
+        }
+        else
+        {
             WrongAnswer();
-            Invoke("ChangeFrame", 1.5f);
+            Invoke(nameof(ChangeFrame), 1.5f);
         }
     }
 
-    public void OnStage2Click(int _answer){
-        if(_answer == TrueAnswerIndex){
-            p.Play();
-            GoodAnswer(actualAnimal.AnswerIsTrue);
+    public void OnStage2Click(int selectedAnswer)
+    {
+        if (selectedAnswer == trueAnswerIndex)
+        {
+            particleSystem.Play();
+            GoodAnswer(true);
             CountAnswers++;
-            Debug.Log($"CountAnswers {CountAnswers}");
-            Invoke("ChangeFrame", 1.5f);
-        }else{
-            WrongAnswer(_answer);
-            Invoke("ChangeFrame", 1.5f);
+            Invoke(nameof(ChangeFrame), 1.5f);
+        }
+        else
+        {
+            WrongAnswer(selectedAnswer);
+            Invoke(nameof(ChangeFrame), 1.5f);
         }
     }
 
-    private void Final(){
-        PoolIsNotEmpty = false;
+    private void GoodAnswer(bool isCorrect)
+    {
+        Round2StateMahine.OnGoodStage?.Invoke(isCorrect);
+        Round2StateMahine.OnGoodStage2?.Invoke(trueAnswerIndex);
     }
 
-    public void Start(){
-        p.Stop();
+    private void WrongAnswer()
+    {
+        Round2StateMahine.OnWrongStage?.Invoke(actualAnimal?.AnswerIsTrue ?? false);
+    }
+
+    private void WrongAnswer(int selectedAnswer)
+    {
+        Round2StateMahine.OnWrongStage2?.Invoke(selectedAnswer, trueAnswerIndex);
+    }
+
+    private void SetStage2()
+    {
+        Round2StateMahine.setStage2?.Invoke();
+    }
+
+    private void Final()
+    {
+        poolIsNotEmpty = false;
+    }
+
+    private void Start()
+    {
+        particleSystem.Stop();
         Round2StateMahine.EndGame += Final;
     }
 
-    public void StartGame(){
-        SaveSystem.SaveFirstStage(SaveSystem.GetSave(SaveSystem.count-1));
-        Round2StateMahine.setStage1.Invoke();
-        Round2StateMahine.StartGame.Invoke();
+    public void StartGame()
+    {
+        SaveSystem.SaveFirstStage(SaveSystem.GetSave(SaveSystem.count - 1));
+        Round2StateMahine.setStage1?.Invoke();
+        Round2StateMahine.StartGame?.Invoke();
 
         ChangeFrame();
     }
 
-    void OnDestroy(){
+    private void OnDestroy()
+    {
         Round2StateMahine.EndGame -= Final;
     }
 }

@@ -7894,7 +7894,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 386896fe242b4c8429fc93d304a2ed1b, type: 2}
   - {fileID: 11400000, guid: 5d174d46ad98a614897fed7349979d69, type: 2}
   - {fileID: 11400000, guid: 201ab21c26b8c574ea4180ef82cf9e93, type: 2}
-  borders: []
   countForHard: 28
 --- !u!114 &882864470
 MonoBehaviour:
@@ -7908,7 +7907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b69b6c17f9bc31459752b81a87b6e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p: {fileID: 470960213}
+  particleSystem: {fileID: 470960213}
 --- !u!114 &882864471
 MonoBehaviour:
   m_ObjectHideFlags: 0

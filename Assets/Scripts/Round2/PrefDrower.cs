@@ -7,13 +7,19 @@ public class PrefDrower : MonoBehaviour
 {
     [SerializeField]
     GameObject border;
-    [SerializeField]
     GameObject content;
+
+    [SerializeField]
+    GameObject little;
 
     public void SetImg(GameObject go)
     {
         content?.Destroy();
         content = Instantiate(go, border.transform);
+        content.transform.parent = border.transform;
+        content.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+
+        Round2StateMahine.SetLittleBorder.Invoke(new Trans{ position = content.GetComponent<BoxCollider>().center, scale =  content.GetComponent<BoxCollider>().size});
     }
 
     void Awake(){

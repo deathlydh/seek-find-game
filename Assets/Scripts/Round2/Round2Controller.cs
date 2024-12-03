@@ -37,14 +37,14 @@ public class Round2Controller : MonoBehaviour
         var imgPool = GetComponent<Round2ImgPool>();
         if (imgPool == null)
         {
-            Debug.LogError("Round2ImgPool компонент не найден!");
+            Debug.LogError("Round2ImgPool пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ!");
             return;
         }
 
         var newAnimal = imgPool.GetNewFrameInfo();
         if (newAnimal == null)
         {
-            Debug.LogWarning("Больше нет доступных вопросов.");
+            Debug.LogWarning("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.");
             poolIsNotEmpty = false;
             Round2StateMahine.EndGame?.Invoke();
             return;
@@ -53,7 +53,7 @@ public class Round2Controller : MonoBehaviour
         actualAnimal = newAnimal.Value;
         DetermineAnswers();
 
-        // Отправляем события
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         Round2StateMahine.SetAnswers?.Invoke(answers);
         Round2StateMahine.SetImg?.Invoke(actualAnimal.Value.imgPrefabs);
         Round2StateMahine.OnGoodStage?.Invoke(true);

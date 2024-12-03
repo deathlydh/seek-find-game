@@ -5,7 +5,7 @@ using UnityEngine;
 public class TextSetter : MonoBehaviour
 {
     void setText(string animal){
-        this.GetComponent<TMPro.TMP_Text>().SetText($"В выбранной области {animal}");
+        this.GetComponent<TMPro.TMP_Text>().SetText($"В выбранной области {animal}?");
     }
     void Start()
     {

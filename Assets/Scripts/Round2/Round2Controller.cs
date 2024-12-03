@@ -72,18 +72,18 @@ public class Round2Controller : MonoBehaviour
                 particleSystem.Play();
                 GoodAnswer(true);
                 CountAnswers++;
-                Invoke(nameof(ChangeFrame), 1.5f);
+                Invoke(nameof(ChangeFrame), 0.6f);
             }
             else
             {
                 GoodAnswer(false);
-                Invoke(nameof(SetStage2), 1.5f);
+                Invoke(nameof(SetStage2), 0.3f);
             }
         }
         else
         {
             WrongAnswer();
-            Invoke(nameof(ChangeFrame), 1.5f);
+            Invoke(nameof(ChangeFrame), 0.6f);
         }
     }
 
@@ -94,12 +94,12 @@ public class Round2Controller : MonoBehaviour
             particleSystem.Play();
             GoodAnswer(true);
             CountAnswers++;
-            Invoke(nameof(ChangeFrame), 1.5f);
+            Invoke(nameof(ChangeFrame), 0.8f);
         }
         else
         {
             WrongAnswer(selectedAnswer);
-            Invoke(nameof(ChangeFrame), 1.5f);
+            Invoke(nameof(ChangeFrame), 0.8f);
         }
     }
 

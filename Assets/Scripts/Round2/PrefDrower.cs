@@ -14,6 +14,7 @@ public class PrefDrower : MonoBehaviour
         content?.Destroy();
         content = Instantiate(go, border.transform);
         content.transform.parent = border.transform;
+        content.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
     }
 
     void Awake(){

@@ -272,7 +272,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &44985207
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6657,6 +6657,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3820712177789936833, guid: f1a784095f9c61c42bd6a647c8590e18, type: 3}
       insertIndex: -1
       addedObject: {fileID: 296437838}
+    - targetCorrespondingSourceObject: {fileID: 3820712177789936833, guid: f1a784095f9c61c42bd6a647c8590e18, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8964825543836409437}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1a784095f9c61c42bd6a647c8590e18, type: 3}
 --- !u!1 &601188378
@@ -8771,6 +8774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   border: {fileID: 296437836}
+  little: {fileID: 0}
 --- !u!114 &1285021443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8899,7 +8903,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1285021439}
-  - {fileID: 8964825543836409437}
   - {fileID: 44985207}
   - {fileID: 702482510}
   - {fileID: 861225319}
@@ -11092,11 +11095,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1346996994}
+  m_Father: {fileID: 1126283759}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -186.46, y: -182.93}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 196.79, y: 190.63}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8964825543836409438
@@ -11125,7 +11128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0, g: 0.9215687, b: 0.7803922, a: 0.5}
   m_EffectDistance: {x: 1.54, y: -1.06}
-  m_UseGraphicAlpha: 0
+  m_UseGraphicAlpha: 1
 --- !u!1001 &9104869808854393606
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -110,6 +110,7 @@ public class Activator : MonoBehaviour
             Round2StateMahine.OnWrongStage2 -= SetWrong;
         }
     }
+
 }
 /*
     void Awake()

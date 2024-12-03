@@ -40,30 +40,54 @@ public static class Round2StateMahine
     public static Action StartGame;
 
     private static StateRound2 state = StateRound2.Stage1;
+    private static bool isInputBlocked = false; // Новое поле
+
     public static StateRound2 State
     {
-        private set{
+        private set
+        {
             state = value;
         }
-        get{
+        get
+        {
             return state;
         }
+    }
+
+    public static bool IsButtonsLocked { get; private set; } = false;
+
+    public static void LockButtons()
+    {
+        IsButtonsLocked = true;
+    }
+
+    public static void UnlockButtons()
+    {
+        IsButtonsLocked = false;
+    }
+
+    public static bool IsInputBlocked
+    {
+        get => isInputBlocked;
+        set => isInputBlocked = value; // Управление блокировкой
     }
 
     public static Action<string[]> SetAnswers;
     public static Action<GameObject> SetImg;
 
-    public static void init(){
+    public static void init()
+    {
     }
 
     public static void SetStage1()
     {
         State = StateRound2.Stage1;
-        setStage1.Invoke();
+        setStage1?.Invoke();
     }
+
     public static void SetStage2()
     {
         State = StateRound2.Stage2;
-        setStage2.Invoke();
+        setStage2?.Invoke();
     }
 }

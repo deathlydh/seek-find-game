@@ -70,13 +70,25 @@ public class Round2ImgPool : MonoBehaviour
 
     public PrefabWithAnswers? GetNewFrameInfo()
     {
+        if (Round2StateMahine.IsInputBlocked)
+        {
+            Debug.LogWarning("Ввод заблокирован!");
+            return null;
+        }
+
+        Round2StateMahine.IsInputBlocked = true; // Блокируем ввод
+
         var question = GetNewQuestion();
-        if (question == null) return null;
+        if (question == null)
+        {
+            Round2StateMahine.IsInputBlocked = false; // Разблокируем ввод при ошибке
+            return null;
+        }
 
         var falseAnswers = GetFalseAnswers(question.correctAnswer);
 
         bool _answerIsTrue = UnityEngine.Random.value > 0.2f;
-        return new PrefabWithAnswers
+        var frameInfo = new PrefabWithAnswers
         {
             imgPrefabs = question.animalPrefab,
             TrueAnswer = question.correctAnswer,
@@ -84,5 +96,8 @@ public class Round2ImgPool : MonoBehaviour
             AnswerIsTrue = _answerIsTrue,
             supAnswer = _answerIsTrue ? question.correctAnswer : falseAnswers[0]
         };
+
+        Round2StateMahine.IsInputBlocked = false; // Разблокируем ввод после обработки
+        return frameInfo;
     }
 }

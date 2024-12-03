@@ -844,6 +844,13 @@ MonoBehaviour:
   stage: 1
   ind: 2
   btn: {fileID: 0}
+  allButtons:
+  - {fileID: 2107929192}
+  - {fileID: 1283000346}
+  - {fileID: 205630398}
+  - {fileID: 1543440056}
+  - {fileID: 886923867}
+  - {fileID: 465212246}
 --- !u!1 &269970013
 GameObject:
   m_ObjectHideFlags: 0
@@ -1587,6 +1594,13 @@ MonoBehaviour:
   stage: 0
   ind: 0
   btn: {fileID: 0}
+  allButtons:
+  - {fileID: 886923867}
+  - {fileID: 465212246}
+  - {fileID: 2107929192}
+  - {fileID: 1283000346}
+  - {fileID: 205630398}
+  - {fileID: 1543440056}
 --- !u!1 &470960211
 GameObject:
   m_ObjectHideFlags: 0
@@ -7895,6 +7909,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d174d46ad98a614897fed7349979d69, type: 2}
   - {fileID: 11400000, guid: 201ab21c26b8c574ea4180ef82cf9e93, type: 2}
   countForHard: 28
+  activatorScript: {fileID: 0}
 --- !u!114 &882864470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8093,6 +8108,13 @@ MonoBehaviour:
   stage: 0
   ind: 1
   btn: {fileID: 886923867}
+  allButtons:
+  - {fileID: 886923867}
+  - {fileID: 465212246}
+  - {fileID: 2107929192}
+  - {fileID: 1283000346}
+  - {fileID: 205630398}
+  - {fileID: 1543440056}
 --- !u!1 &955491274
 GameObject:
   m_ObjectHideFlags: 0
@@ -8942,6 +8964,13 @@ MonoBehaviour:
   stage: 1
   ind: 1
   btn: {fileID: 0}
+  allButtons:
+  - {fileID: 2107929192}
+  - {fileID: 1283000346}
+  - {fileID: 205630398}
+  - {fileID: 1543440056}
+  - {fileID: 886923867}
+  - {fileID: 465212246}
 --- !u!1 &1285021438
 GameObject:
   m_ObjectHideFlags: 0
@@ -9646,6 +9675,13 @@ MonoBehaviour:
   stage: 1
   ind: 3
   btn: {fileID: 0}
+  allButtons:
+  - {fileID: 2107929192}
+  - {fileID: 1283000346}
+  - {fileID: 205630398}
+  - {fileID: 1543440056}
+  - {fileID: 886923867}
+  - {fileID: 465212246}
 --- !u!1 &1549831780
 GameObject:
   m_ObjectHideFlags: 0
@@ -10887,6 +10923,13 @@ MonoBehaviour:
   stage: 1
   ind: 0
   btn: {fileID: 0}
+  allButtons:
+  - {fileID: 2107929192}
+  - {fileID: 1283000346}
+  - {fileID: 205630398}
+  - {fileID: 1543440056}
+  - {fileID: 886923867}
+  - {fileID: 465212246}
 --- !u!1 &2142416329
 GameObject:
   m_ObjectHideFlags: 0

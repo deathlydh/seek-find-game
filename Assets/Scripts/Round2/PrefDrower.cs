@@ -7,13 +7,13 @@ public class PrefDrower : MonoBehaviour
 {
     [SerializeField]
     GameObject border;
-    [SerializeField]
     GameObject content;
 
     public void SetImg(GameObject go)
     {
         content?.Destroy();
         content = Instantiate(go, border.transform);
+        content.transform.parent = border.transform;
     }
 
     void Awake(){

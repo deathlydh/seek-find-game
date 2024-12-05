@@ -133,6 +133,8 @@ public class Round2Controller : MonoBehaviour
     {
         particleSystem.Stop();
         Round2StateMahine.EndGame += Final;
+
+        Round2StateMahine.IsInputBlocked = false;
     }
 
     public void StartGame()

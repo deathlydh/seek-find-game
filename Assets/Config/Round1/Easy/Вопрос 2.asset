@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animalPrefab: {fileID: 6742216158348567645, guid: 73543a116050d0545925bf25f872b016, type: 3}
   answerOptions:
-  - "\u041E\u043B\u0435\u043D\u044C"
+  - "\u0418\u0437\u044E\u0431\u0440\u044C"
   - "\u041B\u043E\u0441\u044C"
   - "\u0412\u043E\u043B\u043A"
   - "\u041A\u0430\u0431\u0430\u043D"
-  correctAnswer: "\u041E\u043B\u0435\u043D\u044C"
+  correctAnswer: "\u0418\u0437\u044E\u0431\u0440\u044C"

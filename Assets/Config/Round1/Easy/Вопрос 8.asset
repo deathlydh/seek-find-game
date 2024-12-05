@@ -15,7 +15,7 @@ MonoBehaviour:
   animalPrefab: {fileID: 4952900555592577642, guid: bf594730e1f5277468d040743955c1d0, type: 3}
   answerOptions:
   - "\u0421\u043E\u0431\u043E\u043B\u044C"
-  - "\u0411\u0443\u043B\u043A\u0430"
+  - "\u0411\u0435\u043B\u043A\u0430"
   - "\u041A\u0440\u044B\u0441\u0430"
   - "\u0417\u0430\u044F\u0446"
   correctAnswer: "\u0421\u043E\u0431\u043E\u043B\u044C"

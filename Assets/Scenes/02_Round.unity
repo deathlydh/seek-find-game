@@ -7155,7 +7155,7 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 120
+    m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 1
   m_Spacing: 0
@@ -7316,7 +7316,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c823fdf7fe1efad40b41cad16afeaa23, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 428982f16bde5a849ad0b97a9bfe794f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

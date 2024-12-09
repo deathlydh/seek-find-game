@@ -16,6 +16,6 @@ MonoBehaviour:
   answerOptions:
   - "\u0412\u043E\u043B\u043A"
   - "\u041B\u043E\u0441\u044C"
-  - "\u041F\u0438\u0441\u0435\u0446"
+  - "\u041F\u0435\u0441\u0435\u0446"
   - "\u0421\u043E\u0431\u0430\u043A\u0430"
   correctAnswer: "\u0412\u043E\u043B\u043A"

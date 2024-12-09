@@ -12,4 +12,9 @@ public class ScoreManager : MonoBehaviour
     {
         SaveSystem.Save(score); // Сохранить очки в системе сейвов
     }
+
+    public void Start()
+    {
+        
+    }
 }

@@ -131,6 +131,7 @@ public class Round2Controller : MonoBehaviour
 
     private void Start()
     {
+        CountAnswers = 0;
         particleSystem.Stop();
         Round2StateMahine.EndGame += Final;
 

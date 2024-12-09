@@ -66,5 +66,9 @@ public class Round2TimeManager : MonoBehaviour
         }
     }
 
+    void OnDestroy()
+    {
+        Round2StateMahine.StartGame -= StartTimer;
+    }
 
 }

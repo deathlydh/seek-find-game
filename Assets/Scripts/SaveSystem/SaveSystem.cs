@@ -16,10 +16,12 @@ public static class SaveSystem
 
     public static void init()
     {
+        /*
         if (PlayerPrefs.GetInt(_count) != 0)
         {
             count = PlayerPrefs.GetInt(_count);
-        }
+        }*/
+        count = 0;
         PlayerPrefs.SetString(PassPool, "");
     }
 

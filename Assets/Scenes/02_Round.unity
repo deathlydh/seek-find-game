@@ -7258,7 +7258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Player: {fileID: 601188379}
   _AI: {fileID: 1549831782}
-  obj: {fileID: 0}
+  obj: {fileID: 702482509}
 --- !u!1 &716220868
 GameObject:
   m_ObjectHideFlags: 0

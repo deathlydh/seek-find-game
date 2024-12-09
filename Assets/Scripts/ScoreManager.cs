@@ -15,6 +15,6 @@ public class ScoreManager : MonoBehaviour
 
     public void Start()
     {
-        
+        SaveSystem.init();
     }
 }

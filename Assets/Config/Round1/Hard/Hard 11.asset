@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animalPrefab: {fileID: 6695752266251023022, guid: 9a20574f04394a64a98156e87d1e358c, type: 3}
   answerOptions:
-  - "\u041A\u0430\u0431\u0430\u043D"
-  - "\u041B\u043E\u0441\u044C"
-  - "\u041C\u0435\u0434\u0432\u0435\u0434\u044C"
-  - "\u041E\u043B\u0435\u043D\u044C"
-  correctAnswer: "\u041A\u0430\u0431\u0430\u043D"
+  - "Кабан"
+  - "Лось"
+  - "Медведь"
+  - "Олень"
+  correctAnswer: "Кабан"

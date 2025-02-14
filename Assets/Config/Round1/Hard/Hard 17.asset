@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animalPrefab: {fileID: 3517656262285153012, guid: 17b3bfc59b12ab945bbbe2c53135669f, type: 3}
   answerOptions:
-  - "\u0411\u0443\u0440\u0443\u043D\u0434\u0443\u043A"
-  - "\u0417\u0430\u044F\u0446"
-  - "\u041F\u0435\u0441\u0435\u0446"
-  - "\u0411\u0430\u0440\u0441\u0443\u043A"
-  correctAnswer: "\u0411\u0443\u0440\u0443\u043D\u0434\u0443\u043A"
+  - "chipmunk"
+  - "hare"
+  - "arctic fox"
+  - "asian badger"
+  correctAnswer: "chipmunk"

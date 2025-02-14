@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animalPrefab: {fileID: 2577433444733163832, guid: c5daa715b1429d44d8eb3914c582cdac, type: 3}
   answerOptions:
-  - "\u041B\u0435\u0441\u043D\u043E\u0439 \u043A\u043E\u0442"
-  - "\u0420\u044B\u0441\u044C"
-  - "\u041C\u0435\u0434\u0432\u0435\u0434\u044C"
-  - "\u041E\u043B\u0435\u043D\u044C"
-  correctAnswer: "\u041B\u0435\u0441\u043D\u043E\u0439 \u043A\u043E\u0442"
+  - "forest cat"
+  - "lynx"
+  - "brown bear"
+  - "sika deer"
+  correctAnswer: "forest cat"

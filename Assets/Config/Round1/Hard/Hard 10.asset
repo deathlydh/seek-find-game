@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animalPrefab: {fileID: 3110119987364829968, guid: 02b3dde2d996049438bf334ac6b7b2ba, type: 3}
   answerOptions:
-  - "\u0421\u0443\u0440\u043E\u043A"
-  - "\u041B\u043E\u0441\u044C"
-  - "\u041F\u0435\u0441\u0435\u0446"
-  - "\u0417\u0430\u044F\u0446"
-  correctAnswer: "\u0421\u0443\u0440\u043E\u043A"
+  - "marmot"
+  - "elk"
+  - "arctic fox"
+  - "hare"
+  correctAnswer: "marmot"

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef88ebb9b374494dac4b8253ff64ed2, type: 3}
+  m_Name: "\u0412\u043E\u043F\u0440\u043E\u0441 4"
+  m_EditorClassIdentifier: 
+  animalPrefab: {fileID: 1707528852163131449, guid: f2918a90c01229345a2ee8bf6888d155, type: 3}
+  answerOptions:
+  - "\u041C\u0430\u043D\u0443\u043B"
+  - "\u0417\u0430\u044F\u0446"
+  - "\u0420\u044B\u0441\u044C"
+  - "\u0411\u0430\u0440\u0441\u0443\u043A"
+  correctAnswer: "\u041C\u0430\u043D\u0443\u043B"

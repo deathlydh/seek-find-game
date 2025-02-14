@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef88ebb9b374494dac4b8253ff64ed2, type: 3}
+  m_Name: "Вопрос 4"
+  m_EditorClassIdentifier: 
+  animalPrefab: {fileID: 1707528852163131449, guid: f2918a90c01229345a2ee8bf6888d155, type: 3}
+  answerOptions:
+  - "manul"
+  - "hare"
+  - "lynx"
+  - "asian badger"
+  correctAnswer: "manul"

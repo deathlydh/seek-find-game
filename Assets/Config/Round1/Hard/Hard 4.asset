@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animalPrefab: {fileID: 7848006864948709671, guid: ba3e008bfe8e4094294a13659f0023e0, type: 3}
   answerOptions:
-  - "\u041E\u043B\u0435\u043D\u044C"
-  - "\u041B\u043E\u0441\u044C"
-  - "\u041A\u0430\u0431\u0430\u0440\u0433\u0430"
-  - "\u041A\u0430\u0431\u0430\u043D"
-  correctAnswer: "\u041E\u043B\u0435\u043D\u044C"
+  - "sika deer"
+  - "elk"
+  - "musk deer"
+  - "wild boar"
+  correctAnswer: "sika deer"

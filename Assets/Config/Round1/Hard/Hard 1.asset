@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animalPrefab: {fileID: 116241750413846782, guid: a52e367cf28930048a6a27bf8d5b5e1e, type: 3}
   answerOptions:
-  - "\u041C\u0435\u0434\u0432\u0435\u0434\u044C"
-  - "\u041B\u043E\u0441\u044C"
-  - "\u0412\u043E\u043B\u043A"
-  - "\u041A\u0430\u0431\u0430\u043D"
-  correctAnswer: "\u041C\u0435\u0434\u0432\u0435\u0434\u044C"
+  - "brown bear"
+  - "elk"
+  - "wolf"
+  - "wild boar"
+  correctAnswer: "brown bear"

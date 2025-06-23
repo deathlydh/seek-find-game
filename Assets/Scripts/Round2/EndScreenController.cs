@@ -1,27 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
 
-public class EndScreenController : MonoBehaviour
-{
-    [SerializeField]
-    TMPro.TMP_Text _Player;
-    [SerializeField]
-    TMPro.TMP_Text _AI;
-    [SerializeField]
-    GameObject obj;
+    public class EndScreenController : MonoBehaviour
+    {
+        [SerializeField]
+        TMPro.TMP_Text _Player;
+        [SerializeField]
+        TMPro.TMP_Text _AI;
+        [SerializeField]
+        GameObject obj;
 
-    void SetText(){
+    public static int LastSecondRoundScore = 0;
+
+    void SetText()
+    {
         obj?.SetActive(true);
-        //_Player.SetText(SaveSystem.GetFirstStage().ToString());
-        _AI.SetText(SaveSystem.GetSave(SaveSystem.GetCount()-1).ToString());
+
+        if (SaveSystem.GetCount() > 0)
+        {
+            int currentSecondRoundScore = SaveSystem.GetSave(SaveSystem.GetCount() - 1);
+            _AI.SetText(currentSecondRoundScore.ToString());
+            LastSecondRoundScore = currentSecondRoundScore; // Сохраняем значение
+        }
+        else
+        {
+            _AI.SetText("0");
+            LastSecondRoundScore = 0;
+        }
     }
 
-    void Awake(){
+    void Awake()
+    {
         Round2StateMahine.EndGame += SetText;
     }
 
-    void OnDestroy(){
+    void OnDestroy()
+    {
         Round2StateMahine.EndGame -= SetText;
     }
 }

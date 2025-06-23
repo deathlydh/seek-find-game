@@ -14,7 +14,8 @@ public class FinalScoreDisplay : MonoBehaviour
         int lastSavedScore = SaveSystem.GetFirstStage(); // �������� ��������� ����������� ����
         Debug.Log("�������� ��������� ����: " + lastSavedScore); // ������� � �������
         finalScoreText.text = lastSavedScore.ToString(); // ���������� �� UI
-        _AI.SetText(SaveSystem.GetSave(SaveSystem.GetCount() - 1).ToString());
+                                                         // Второй раунд (берём из статической переменной)
+        _AI.SetText(EndScreenController.LastSecondRoundScore.ToString());
     }
 
    

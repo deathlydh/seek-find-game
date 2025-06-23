@@ -22,8 +22,8 @@ public class AutoQuizManager : MonoBehaviour
     public GameObject prestartPanel; // Назначьте в инспекторе
     public TMP_Text animalNameText;  // Текст для отображения названия животного
     private int currentScore = 0;
+    [SerializeField] private TMP_Text finalScoreText;
 
-    
 
     private void Start()
     {
@@ -70,44 +70,58 @@ public class AutoQuizManager : MonoBehaviour
 
     private IEnumerator AutoAnswer()
     {
-        // 1. Ждем 1 секунду перед выделением
+        // Ждём 0.7 секунды перед ответом
         yield return new WaitForSeconds(0.7f);
 
-        // 2. Активируем рамку выделения
-        var animalCollider = currentAnimalInstance.GetComponent<BoxCollider>();
-        if (animalCollider != null && selectionOutline != null)
+        // 5% шанс на неправильный ответ
+        bool isCorrect = Random.Range(0, 100) < 95;
+
+        // Визуальные эффекты и логика в зависимости от результата
+        if (isCorrect)
         {
-            UpdateOutline(selectionOutline.rectTransform, animalCollider);
-            selectionOutline.gameObject.SetActive(true);
+            // Показываем правильный ответ
+            var animalCollider = currentAnimalInstance.GetComponent<BoxCollider>();
+            if (animalCollider != null && selectionOutline != null)
+            {
+                UpdateOutline(selectionOutline.rectTransform, animalCollider);
+                selectionOutline.gameObject.SetActive(true);
+            }
+
+            border.SetWrong(false); // Зелёная рамка
+
+            if (animalNameText != null)
+            {
+                animalNameText.text = currentQuestion.correctAnswer;
+                animalNameText.gameObject.SetActive(true);
+            }
+
+            if (correctAnswerParticles != null)
+            {
+                Vector3 topOfScreen = new Vector3(0, Camera.main.orthographicSize, 0);
+                ParticleSystem particles = Instantiate(correctAnswerParticles, topOfScreen, Quaternion.identity);
+                Destroy(particles.gameObject, 1.5f);
+            }
+
+            // Увеличиваем счёт
+            currentScore++;
+            scoreManager.score++;
+            SaveSystem.Save(scoreManager.score);
+        }
+        else
+        {
+            // Обработка неправильного ответа
+            border.SetWrong(true); // Красная рамка
+
+            if (animalNameText != null)
+                animalNameText.gameObject.SetActive(false); // Скрываем текст
+
+            selectionOutline.gameObject.SetActive(false); // Скрываем рамку
         }
 
-        // 3. Активируем BorderSwitcher (если используется)
-        border.SetWrong(false); // Аналогично AnimalQuizManager
-
-        // 4. Отображаем название животного
-        if (animalNameText != null)
-        {
-            animalNameText.text = currentQuestion.correctAnswer;
-            animalNameText.gameObject.SetActive(true);
-        }
-
-        // 5. Эффект частиц
-        if (correctAnswerParticles != null)
-        {
-            Vector3 topOfScreen = new Vector3(0, Camera.main.orthographicSize, 0);
-            ParticleSystem particles = Instantiate(correctAnswerParticles, topOfScreen, Quaternion.identity);
-            Destroy(particles.gameObject, 1.5f);
-        }
-
-        // 6. Увеличение счёта
-        currentScore++;
-        scoreManager.score++;
-        SaveSystem.Save(scoreManager.score);
-
-        // 7. Задержка перед следующим вопросом
+        // Задержка перед следующим вопросом
         yield return new WaitForSeconds(2f);
 
-        // 8. Очистка
+        // Очистка
         if (animalNameText != null)
             animalNameText.gameObject.SetActive(false);
 
@@ -161,5 +175,9 @@ public class AutoQuizManager : MonoBehaviour
         SaveSystem.Save(scoreManager.score);
         StopAllCoroutines();
         gameOverPanel.SetActive(true);
+        if (finalScoreText != null)
+        {
+            finalScoreText.text = $"{currentScore}";
+        }
     }
 }

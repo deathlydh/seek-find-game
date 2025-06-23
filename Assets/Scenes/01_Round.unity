@@ -6553,7 +6553,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -252.44, y: 0}
+  m_AnchoredPosition: {x: -252.43994, y: 0}
   m_SizeDelta: {x: -504.88, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &500813918
@@ -8348,7 +8348,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 66.859985}
+  m_AnchoredPosition: {x: 0, y: 92}
   m_SizeDelta: {x: 550, y: 70}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1281860509
@@ -8583,7 +8583,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.598
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -9043,7 +9043,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6051494741041970549, guid: 83b9ec7c49cde6a4b9f1ab5fe8f3139d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 960.00006
+      value: 1079.7932
       objectReference: {fileID: 0}
     - target: {fileID: 6051494741041970549, guid: 83b9ec7c49cde6a4b9f1ab5fe8f3139d, type: 3}
       propertyPath: m_AnchoredPosition.y
